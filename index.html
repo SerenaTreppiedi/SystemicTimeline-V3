@@ -1,0 +1,1488 @@
+<!-- Autore: Serena Treppiedi | 03/12/2025 | Tutti i diritti riservati -->
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+<!--  ANALISI -->
+
+<!--   Clarity tag (gtag.js)  -->
+    <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "w5h1d2y1la");
+        window.clarity("set", "test_context", "jotform_embed");
+
+</script> 
+
+ <!--    Google Analytics tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NBMV13VE1L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NBMV13VE1L');
+</script>
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gli step verso un nuovo approccio di pensiero</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@400;700&family=Plus+Jakarta+Sans:wght@400;700&family=Lora:ital@1"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 400;
+            background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 100%);
+            color: #FFFFFF;
+            min-height: auto;
+            /*modificato in auto per adattarsi nell'embeded */
+            max-width: 1200px;
+            margin: 0 auto;
+            /* MODIFICA: larghezza massima body */
+            overflow-x: scroll;  /* ripristinato */;
+            /* MODIFICA: Scrollbar orizzontale sempre visibile */
+            padding-top: 160px;
+            /* Sposta le timeline più in basso per evitare l'header */
+            padding-bottom: 30px;
+            background-attachment: fixed;
+          overscroll-behavior-x: none;  /* ← aggiungi questa riga */
+        }
+
+        .header {
+            text-align: center;
+            padding: 0.75rem;
+            background: rgba(29, 29, 29, 0.9);
+            border-bottom: 2px solid #BF953F;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .header h1 {
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #BF953F;
+            margin-bottom: 0.25rem;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 400;
+        }
+
+        .header-icons {
+            position: absolute;
+          z-index: 200000; 
+            top: 50%;
+            left: 1.5rem;
+            transform: translateY(-50%);
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+          
+        }
+
+        .header-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(191, 149, 63, 0.2);
+            border: 1px solid rgba(191, 149, 63, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #BF953F;
+            font-size: 1rem;
+        }
+
+        .header-icon:hover {
+            background: rgba(191, 149, 63, 0.3);
+            border-color: #BF953F;
+            transform: scale(1.1);
+        }
+
+
+        /* Stili per il campo di ricerca (discreto in alto a destra) */
+        .search-container {
+            position: absolute;
+            top: 50%;
+            right: 1.5rem;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            width: 200px;
+        }
+
+        .search-input {
+            padding: 0.5rem 0.75rem;
+            border-radius: 18px;
+            border: 1px solid #BF953F;
+            background: rgba(42, 42, 42, 0.7);
+            color: #FFFFFF;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            outline: none;
+            padding-right: 30px;
+            /* Spazio per la X */
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .search-input:focus {
+            border-color: #D4A75E;
+            background: #1A1A1A;
+            box-shadow: 0 0 8px rgba(189, 156, 89, 0.5);
+        }
+
+        .clear-search-btn {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 0 4px;
+            display: none;
+            /* Inizialmente nascosto */
+            z-index: 10002;
+        }
+
+        .clear-search-btn:hover {
+            color: #FFFFFF;
+        }
+
+
+        .timeline-container {
+            padding: 0.5rem 1rem 1rem 1rem;
+            min-width: 100%;
+               overflow: visible;   /* ripristinato */
+            position: relative;
+        }
+
+        .timeline {
+            position: relative;
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-header {
+
+     
+          display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            position: sticky;
+          will-change: transform;  /* ← aggiungi solo questa riga */
+            left: 0;
+            background: rgba(26, 26, 26, 0.95);
+            padding: 0.4rem;
+            border-radius: 6px;
+            backdrop-filter: blur(10px);
+            z-index: 100
+            border-left: 5px solid var(--timeline-color);
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .timeline-title {
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #FFFFFF;
+           visibility: hidden;  /* ← aggiungi solo questa riga */
+        }
+
+        .timeline-track {
+            position: relative;
+            height: 38px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            overflow: visible;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--timeline-color), rgba(255, 255, 255, 0.3));
+            transform: translateY(-50%);
+        }
+.timeline-line::after {
+    content: '❯';
+    position: absolute;
+    right: -2px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--timeline-color);
+    font-size: 0.9rem;
+    pointer-events: none;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    line-height: 1;
+    display: flex;
+    align-items: center;
+}
+
+        .timeline-events {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .event {
+            position: absolute;
+            transform: translateX(-50%);
+            cursor: pointer;
+            transition: opacity 0.1s ease, all 0.2s ease;
+            /* Transizione per il filtro */
+            z-index: 1;
+        }
+
+        /* Stili per il filtro */
+        .event.no-match {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .event.force-open {
+            z-index: 10;
+            /* Z-index inferiore rispetto all'hover */
+            opacity: 1;
+            /* Il dot è sempre visibile */
+        }
+
+        /* Regola per il pop-up quando c'è un match */
+        .event.force-open .event-popup {
+            opacity: 0.6 !important;
+            /* Opacità richiesta del 60% */
+            visibility: visible;
+            transform: translateX(-50%) translateY(-5px);
+            /* Sposta leggermente per feedback visivo */
+            box-shadow: 0 0 0 2px var(--timeline-color), 0 8px 30px rgba(0, 0, 0, 0.8);
+            /* MODIFICA: Bordo più sottile */
+            transition: all 0.2s ease, opacity 0.25s ease 0.1s;
+            /* MODIFICA: Aggiunto ritardo di 0.25s all'apparizione del popup in ricerca */
+        }
+
+        .event:hover {
+            z-index: 10001;
+        }
+
+        /* Hover sui match: 100% opacità e primo piano */
+        .event.force-open:hover .event-popup {
+            opacity: 1 !important;
+        }
+
+        .event:hover .event-popup {
+            opacity: 1;
+            visibility: visible;
+        }
+
+
+        .vertical-line {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            border-left: 1px dashed rgba(255, 255, 255, 0.4);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            z-index: 99;
+        }
+
+        .vertical-line.active {
+            opacity: 1;
+        }
+
+        .event-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--timeline-color);
+            border: 2px solid #FFFFFF;
+            box-shadow: 0 0 0 3px rgba(189, 156, 89, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .event:hover .event-dot {
+            transform: scale(1.3);
+            box-shadow: 0 0 0 4px rgba(189, 156, 89, 0.4);
+        }
+
+        .event-popup {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(26, 26, 26, 0.98);
+            padding: 0.6rem;
+            /* MODIFICA: Padding leggermente ridotto */
+            border-radius: 6px;
+            /* MODIFICA: Raggio ridotto */
+            border: 1px solid var(--timeline-color);
+            /* MODIFICA: Bordo più sottile */
+            min-width: 175px;
+            /* MODIFICA: Ridotto di ~30% da 250px */
+            max-width: 224px;
+            /* MODIFICA: Ridotto di ~30% da 320px */
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            z-index: 300000;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+        }
+
+        .event-popup h4 {
+            font-family: 'Darker Grotesque', sans-serif;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 0.4rem;
+            font-size: 1.0rem;
+            line-height: 1.4;
+        }
+
+        /* Nuovo stile per il contenitore data/indicatori */
+        .popup-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            /* Spazio tra data e pallini */
+            margin-bottom: 0.4rem;
+        }
+
+        .event-popup .date {
+            color: #BF953F;
+            font-weight: 600;
+            font-size: 0.8rem;
+            line-height: 1;
+            /* Allinea il testo con i pallini */
+        }
+
+        /* Nuovo stile per i pallini indicatori (al posto dei badges) */
+        .indicators {
+            display: flex;
+            gap: 4px;
+        }
+
+        .indicator-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            /* Colori specifici: #4CAF50 per Sostenibilità, #2196F3 per PoliTO */
+        }
+
+        .indicator-sustainability {
+            background: #4CAF50;
+        }
+
+        .indicator-systemthinking {
+    background: #BFB11B;
+}
+.indicator-systemicdesign {
+    background: #2564BF;
+}
+.indicator-systemdynamic {
+    background: #A42134;
+}
+
+        
+        .year-markers {
+            position: relative;
+            height: 25px;
+            margin: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .year-marker {
+            position: absolute;
+            transform: translateX(-50%);
+            color: #BF953F;
+            font-size: 0.8rem;
+            font-weight: 500;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .year-marker::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 18px;
+            background: rgba(189, 156, 89, 0.2);
+        }
+
+        .app-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+           padding: 0.9rem 1rem;
+            background: rgba(29, 29, 29, 0.9);
+            border-top: 2px solid #BF953F;
+            z-index: 10000;
+            display: flex;
+            justify-content: space-between;
+            /* Allinea a dx e sx */
+            align-items: center;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        /* NUOVO: Stili per la leggenda al centro del footer */
+        .legend-container {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            padding: 0.5rem 0;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+
+        .dot-sustainability {
+            background: #4CAF50;
+            /* Verde */
+        }
+
+        .dot-polito {
+            background: #2196F3;
+            /* Blu */
+        }
+
+
+        .new-event-prompt {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .add-to-timeline-btn {
+            background: #424242;
+            /* MODIFICA: Grigio scuro */
+            color: #FFFFFF;
+            border: 1px solid #BF953F;
+            /* MODIFICA: Bordo color oro */
+            padding: 0.5rem 0.9rem;
+            /* MODIFICA: Reso più piccolo */
+            border-radius: 6px;
+            /* MODIFICA: Squadrato */
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .add-to-timeline-btn:hover {
+            background: #555555;
+            /* Grigio leggermente più chiaro per hover */
+            transform: translateY(-2px);
+            box-shadow: 0 3px 10px rgba(189, 156, 89, 0.3);
+        }
+.continue-btn {
+    background: #424242;
+    color: #FFFFFF;
+    border: 1px solid #BF953F;
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.75rem;
+}
+
+.continue-btn:hover {
+    background: #555555;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(189, 156, 89, 0.3);
+}
+        .zoom-controls {
+            display: flex;
+            gap: 0.6rem;
+        }
+
+        .zoom-btn {
+            background: #BF953F;
+            color: #1A1A1A;
+            border: none;
+            padding: 0.6rem;
+            border-radius: 50%;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .zoom-btn:hover:not(:disabled) {
+            background: #D4A75E;
+            transform: translateY(-2px);
+            box-shadow: 0 3px 10px rgba(189, 156, 89, 0.3);
+        }
+
+        .zoom-btn:disabled {
+            background: #6e6e6e;
+            cursor: not-allowed;
+            opacity: 0.5;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .zoom-level {
+            background: rgba(255, 255, 255, 0.12);
+            color: #FFFFFF;
+            padding: 0.5rem 1rem;
+            border-radius: 22px;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+
+
+
+        .info-popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+          pointer-events: none;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 300000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info-popup-overlay.active {
+            display: flex;
+        }
+
+.info-popup {
+    background: rgba(26, 26, 26, 0.98);
+    border: 2px solid #BF953F;
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 0;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
+    position: relative;
+    width: calc(100% - 4rem);
+    max-width: none;
+    height:  calc(100vh - 180px);
+    overflow-y: auto;
+  pointer-events: all;
+}
+
+        .info-popup-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: #BF953F;
+            font-size: 2rem;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+
+        .info-popup-close:hover {
+            background: rgba(191, 149, 63, 0.2);
+        }
+
+        .info-popup h3 {
+            font-family: 'Darker Grotesque', sans-serif;
+            color: #BF953F;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-popup p {
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+      .legend-tooltip {
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(42, 42, 42, 0.98);
+    border: 1px solid #BF953F;
+    border-radius: 8px;
+    padding: 0.7rem 0.8rem;
+    width: 240px;
+    font-size: 0.7rem;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.9);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    z-index: 99999;
+    pointer-events: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+
+}
+
+.legend-item {
+    position: relative;
+    cursor: pointer;
+}
+
+.legend-item:hover .legend-tooltip,
+.legend-item.touch-active .legend-tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+        /* --- NUOVI COLORI PER LE TIMELINE --- */
+        .timeline:nth-child(2) {
+            --timeline-color: #36A2EB;
+        }
+
+        .timeline:nth-child(3) {
+            --timeline-color: #ca6b58;
+        }
+
+        .timeline:nth-child(4) {
+            --timeline-color: #FF964C;
+        }
+
+        .timeline:nth-child(5) {
+            --timeline-color: #8D6E63;
+        }
+
+        .timeline:nth-child(6) {
+            --timeline-color: #4DB6AC;
+        }
+
+        .timeline:nth-child(7) {
+            --timeline-color: #4193c5;
+        }
+
+        /* 🟢 Modifica: 5. Definizioni (Verde-Acqua/Turchese) */
+    </style>
+
+
+
+
+    <script>
+        let currentZoom = 1.0; // Inizializzato a 1.0 (100%)
+        let timelineContainer;
+        let timelineData = {};
+        let minYear = 1850;
+        let maxYear = 2030;
+        let baseWidthPx;
+
+
+        const translations = {
+
+
+
+            'Gli step verso un nuovo approccio di pensiero': 'The Steps Towards a New Thinking Approach',
+            'Un viaggio attraverso l\'evoluzione dell\'approccio sistemico nella sostenibilità e nel design': 'A journey through the evolution of the systemic approach in sustainability and design',
+            'Cerca eventi...': 'Search events...',
+            'Cancella ricerca': 'Clear Search',
+            'Storia Generale': 'General History',
+            'Enti': 'Organizations',
+            'Documentazione': 'Documentation',
+            'Eventi': 'Events',
+            'Definizioni': 'Definitions',
+            'Hai qualcosa da aggiungere?': 'Got something to add?',
+            'Contribuisci': 'Contribute',
+            'Sostenibilità': 'Sustainability',
+            'PoliTO': 'PoliTO',
+            // 'Sostenibilità': 'Sustainability',
+            // 'PoliTO': 'PoliTO',
+
+            
+        };
+
+        let langMode = 'it'
+
+        document.addEventListener('DOMContentLoaded', function () {
+document.getElementById('infoPopupOverlay').classList.add('active');
+            
+            const initDomLinks = () => {
+
+// Ricollega il pulsante di reset (sostituisci 'resetBtnId' con l'ID reale del tuo pulsante)
+  const pulsanteReset = document.getElementById('resetBtn');
+if (pulsanteReset) {
+    pulsanteReset.onclick = resetZoom;
+  
+}
+                timelineContainer = document.querySelector('.timeline-container');
+
+                // Assicurati che baseWidthPx sia calcolato correttamente
+                timelineContainer.style.width = '100%';
+                baseWidthPx = timelineContainer.clientWidth;
+
+
+                // Nuovo: Event Listener per la ricerca
+                const searchInput = document.getElementById('searchInput');
+                const clearBtn = document.getElementById('clearSearchBtn');
+
+                if (searchInput) {
+                    searchInput.addEventListener('input', (e) => {
+                        const term = e.target.value.trim();
+                        filterEvents(term);
+                        clearBtn.style.display = term ? 'block' : 'none';
+                    });
+                }
+
+                if (clearBtn) {
+                    clearBtn.addEventListener('click', () => {
+                        searchInput.value = '';
+                        filterEvents('');
+                        clearBtn.style.display = 'none';
+                    });
+                }
+                const menuIcon = document.getElementById('menuIcon');
+
+
+                const infoIcon = document.getElementById('infoIcon');
+                const infoPopupOverlay = document.getElementById('infoPopupOverlay');
+                const closeInfoPopup = document.getElementById('closeInfoPopup');
+
+
+document.getElementById('menuIcon').addEventListener('click', () => {
+    try {
+        const list = Object.keys(translations);
+        
+        // Funzione che attraversa i nodi di testo e sostituisce solo il testo
+        function translateNode(node) {
+            if (node.nodeType === Node.TEXT_NODE) {
+                let text = node.textContent;
+                if (langMode == 'it') {
+                    list.forEach(item => {
+                        if (item.indexOf(';') > -1) {
+                            const [year, t] = item.split(';');
+                            text = text.replaceAll(t, translations[item]);
+                        } else {
+                            text = text.replaceAll(item, translations[item]);
+                        }
+                    });
+                } else {
+                    list.forEach(item => {
+                        const eng = translations[item];
+                        if (item.indexOf(';') > -1) {
+                            const [year, t] = item.split(';');
+                            text = text.replaceAll(eng, t);
+                        } else {
+                            text = text.replaceAll(eng, item);
+                        }
+                    });
+                }
+                node.textContent = text;
+            } else if (node.nodeType === Node.ELEMENT_NODE) {
+                node.childNodes.forEach(child => translateNode(child));
+            }
+        }
+
+        translateNode(document.body);
+
+        langMode = langMode == 'it' ? 'en' : 'it';
+        document.getElementById('menuIcon').innerHTML = langMode == 'it' ? 'EN' : 'IT';
+
+        const updateModal = (infos, mode) => {
+            infos.forEach(infoData => { infoData.style.display = mode; });
+        };
+
+        if (langMode == 'it') {
+            updateModal([...document.getElementsByClassName('en-lang')], 'none');
+            updateModal([...document.getElementsByClassName('it-lang')], 'block');
+        } else {
+            updateModal([...document.getElementsByClassName('en-lang')], 'block');
+            updateModal([...document.getElementsByClassName('it-lang')], 'none');
+        }
+
+    } catch (error) {
+        console.log("🚀 ~ error:", error);
+    }
+});
+
+
+
+                if (infoIcon) {
+
+
+                    infoIcon.addEventListener('click', () => {
+                        infoPopupOverlay.classList.add('active');
+                    });
+                }
+
+                if (closeInfoPopup) {
+                    closeInfoPopup.addEventListener('click', () => {
+                        infoPopupOverlay.classList.remove('active');
+                    });
+                }
+
+                if (infoPopupOverlay) {
+                    infoPopupOverlay.addEventListener('click', (e) => {
+                        if (e.target === infoPopupOverlay) {
+                            infoPopupOverlay.classList.remove('active');
+                        }
+                    });
+                }
+
+            }
+
+            initDomLinks()
+
+            loadData();
+
+            applyZoom();
+
+        });//load
+
+
+
+function loadData() {
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxa1RYzP6CHKUFoxVvmVflsQtaMum0ZGeqfoqmEXLcWzPbAdLHAoKSE6HoMAjW-tEzdlA/exec';
+    
+    timelineData = {
+        '1. Storia Generale': [],
+        '2. Enti': [],
+        '3. Documentazione': [],
+        '4. Eventi': [],
+        '5. Definizioni': []
+    };
+
+    fetch(SCRIPT_URL)
+        .then(response => response.json())
+        .then(rows => {
+            rows.forEach(row => {
+                const year = parseFloat(row['Anno']);
+                const title = String(row['Descrizione'] || '').trim();
+                const category = String(row['Categoria'] || '').trim();
+                const sustainability = String(row['Sostenibilità'] || '').toLowerCase() === 'si';
+                const systemthinking = String(row['SystemThinking_tag'] || '').toLowerCase() === 'si';
+const systemicdesign = String(row['SystemicDesign_tag'] || '').toLowerCase() === 'si';
+const systemdynamic = String(row['SystemDynamic_tag'] || '').toLowerCase() === 'si';
+
+                if (timelineData[category]) {
+                    timelineData[category].push({
+                        year,
+                        title,
+                      titleEN: String(row['Titolo_EN_override'] || '').trim(),
+                      // Riga per cambio traduzione da Database
+                        sustainability,
+systemthinking,
+systemicdesign,
+systemdynamic,
+                        fullKey: `${year};${title};${category}`
+                    });
+                }
+            });
+            renderTimelines();
+        })
+        .catch(error => {
+            console.error('Errore nel caricamento dei dati:', error);
+        });
+}
+
+        function filterEvents(searchTerm) {
+            const term = searchTerm.toLowerCase().trim();
+            const allEvents = document.querySelectorAll('.event');
+
+            // 1. Rimuovi tutte le classi di filtro/forza apertura
+            allEvents.forEach(event => {
+                event.classList.remove('force-open', 'no-match');
+            });
+
+            if (term === '') {
+                // Se la ricerca è vuota, tutti gli eventi sono visibili (no classes)
+                return;
+            }
+
+            // 2. Filtra gli eventi
+            allEvents.forEach(event => {
+                const searchText = event.getAttribute('data-search-text');
+
+                if (searchText && searchText.includes(term)) {
+                    // Match: forza l'apertura con la classe che gestisce l'opacità 60% sul popup
+                    event.classList.add('force-open');
+                } else {
+                    // No match: nascondi
+                    event.classList.add('no-match');
+                }
+            });
+        }
+
+
+        function renderTimelines() {
+            createYearMarkers();
+
+            Object.keys(timelineData).forEach((category, index) => {
+                const containerId = `timeline-${index + 1}`;
+                createTimelineEvents(category, containerId);
+            });
+
+            // Applica il filtro iniziale se c'è testo di ricerca (es. ricarica pagina)
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput && searchInput.value.trim() !== '') {
+                filterEvents(searchInput.value);
+            }
+        }
+
+        function createYearMarkers() {
+            const yearMarkersContainer = document.getElementById('yearMarkers');
+            yearMarkersContainer.innerHTML = '';
+            const yearRange = maxYear - minYear;
+            let step = 10;
+            if (currentZoom < 1.5) {
+                step = 25;
+            } else if (currentZoom < 2.5) {
+                step = 10;
+            } else {
+                step = 5;
+            }
+
+            for (let year = minYear; year <= maxYear; year += step) {
+                const marker = document.createElement('div');
+                marker.className = 'year-marker';
+                marker.textContent = year;
+                marker.style.left = ((year - minYear) / yearRange * 100) + '%';
+                yearMarkersContainer.appendChild(marker);
+            }
+        }
+
+        function createTimelineEvents(category, containerId) {
+
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            container.innerHTML = '';
+            const events = timelineData[category] || [];
+            const yearRange = maxYear - minYear;
+
+            events.forEach(event => {
+                const eventElement = document.createElement('div');
+                eventElement.className = 'event';
+                eventElement.style.left = ((event.year - minYear) / yearRange * 100) + '%';
+
+                // NUOVO: Crea i pallini indicatori
+                let indicators = '';
+                if (event.sustainability) {
+                    indicators += '<div class="indicator-dot indicator-sustainability" title="Sostenibilità"></div>';
+                }
+             if (event.systemthinking) {
+    indicators += '<div class="indicator-dot indicator-systemthinking" title="Systems Thinking"></div>';
+}
+if (event.systemicdesign) {
+    indicators += '<div class="indicator-dot indicator-systemicdesign" title="Systemic Design"></div>';
+}
+if (event.systemdynamic) {
+    indicators += '<div class="indicator-dot indicator-systemdynamic" title="System Dynamic"></div>';
+}
+
+                // Costruisci il testo di ricerca
+               const fullText = `${event.year} ${event.title} ${category} ${event.sustainability ? 'Sostenibilità' : ''} ${event.systemthinking ? 'Systems Thinking' : ''} ${event.systemicdesign ? 'Systemic Design' : ''} ${event.systemdynamic ? 'System Dynamic' : ''}`;
+                eventElement.setAttribute('data-search-text', fullText.toLowerCase());
+
+                // NUOVO: Struttura del popup con data e pallini affiancati 
+              // modifica anche per TRAD EN da DAtabase
+              // modifica per date decimali e arrotondamento
+
+                eventElement.innerHTML = `
+                    <div class="event-dot"></div>
+                    <div class="event-popup">
+                        <div class="popup-header">
+                            <div class="date">${Math.floor(event.year)}</div>
+                            <div class="indicators">${indicators}</div>
+                        </div>
+                        <h4>${langMode == 'it' ? event.title : (event.titleEN || event.title)}</h4>
+      
+                    </div>
+                `;
+
+                eventElement.addEventListener('mouseenter', function (e) {
+                    const verticalLine = document.getElementById('verticalLine');
+                    const eventRect = eventElement.getBoundingClientRect();
+                    const timelineContainerRect = timelineContainer.getBoundingClientRect();
+                    const lineX = eventRect.left - timelineContainerRect.left + (eventRect.width / 2);
+
+                    verticalLine.style.left = lineX + 'px';
+                    verticalLine.classList.add('active');
+                });
+
+                eventElement.addEventListener('mouseleave', function () {
+                    const verticalLine = document.getElementById('verticalLine');
+                    verticalLine.classList.remove('active');
+                });
+
+                container.appendChild(eventElement);
+            });
+        }
+
+        function updateZoomButtons() {
+            const zoomOutBtn = document.getElementById('zoomOutBtn');
+            const zoomInBtn = document.getElementById('zoomInBtn');
+
+            // Controlla contro i limiti fissi (1.0 e 5.0)
+            zoomOutBtn.disabled = currentZoom <= 1.0;
+            zoomInBtn.disabled = currentZoom >= 5.0;
+        }
+
+        function zoomIn() {
+            // MODIFICA: Incremento fisso di 0.5 (50%)
+            currentZoom = Math.min(currentZoom + 0.5, 5.0);
+            applyZoom();
+            renderTimelines();
+        }
+
+        function zoomOut() {
+            // MODIFICA: Decremento fisso di 0.5 (50%) //
+            currentZoom = Math.max(currentZoom - 0.5, 1.0);
+            applyZoom();
+            renderTimelines();
+        }
+
+function resetZoom() {
+    currentZoom = 1.0;
+    applyZoom();
+    renderTimelines();
+    setTimeout(() => {
+        const container = document.querySelector('.timeline-container');
+        if (container) {
+            container.scrollLeft = 0;
+            container.scrollTo({ left: 0, behavior: 'smooth' });
+        }
+        document.body.scrollLeft = 0;
+        window.scrollTo({ left: 0, behavior: 'smooth' });
+    }, 0);
+}
+      
+        
+window.addEventListener('wheel', function(e) {
+    const container = document.querySelector('.timeline-container');
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+        // scroll orizzontale naturale (trackpad) - lascia fare
+        return;
+    }
+    e.preventDefault();
+    container.scrollLeft += e.deltaY;
+}, { passive: false });
+              // MODIFICA: scroll da verticale a orizzontale //
+        
+
+        function applyZoom() {
+            if (!baseWidthPx && timelineContainer) {
+                timelineContainer.style.width = '100%';
+                baseWidthPx = timelineContainer.clientWidth;
+            }
+
+            timelineContainer.style.width = `${baseWidthPx * currentZoom}px`;
+
+            timelineContainer.style.transform = 'none';
+            timelineContainer.style.transformOrigin = 'unset';
+
+            document.getElementById('zoomLevel').textContent = Math.round(currentZoom * 100) + '%';
+
+            updateZoomButtons();
+        }
+
+
+        // Il codice per lo zoom con CTRL + rotella del mouse è stato rimosso per mantenere solo i controlli a scatti richiesti.
+    </script>
+<style>
+  #intro-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: #2a2a2a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999;
+    opacity: 1;
+    transition: opacity 1s ease;
+  }
+ #intro-content {
+    text-align: center;
+    opacity: 0;
+    transition: opacity 3.s ease;
+  }
+  #intro-logo {
+    width: 400px;
+    max-width: 80vw;
+}
+  #intro-title {
+    color: #bf953f;
+    font-size: 6rem;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 0.05em;
+    font-family: 'Darker Grotesque', sans-serif;
+    line-height: 1;
+  }
+  #intro-subtitle {
+    color: #888888;
+    font-size: 1.8rem;
+    font-weight: 300;
+    text-align: center;
+    letter-spacing: 0.05em;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    margin-top: 0.8rem;
+  }
+  #intro-subtitle em {
+    font-style: italic;
+    font-family: 'Lora', serif;
+  }
+</style>
+  
+</head>
+
+<body>
+<div id="intro-overlay">
+<div id="intro-content">
+    <img id="intro-logo" src="LOGO SyChro 1.svg" alt="SyChro - Collective Systemic Chronography">
+</div>
+</div>
+
+<script>
+  (function () {
+    const overlay = document.getElementById('intro-overlay');
+    const title = document.getElementById('intro-content');
+
+    requestAnimationFrame(() => {
+      title.style.opacity = '1';
+    });
+
+    setTimeout(() => {
+      overlay.style.opacity = '0';
+      setTimeout(() => overlay.remove(), 800);
+    }, 6000);
+  })();
+</script>
+  
+  
+    <div class="header">
+
+        <div class="header-icons">
+    <img src="LOGO SyChro 1.svg" alt="SyChro" style="height: 28px; width: auto; opacity: 0.9; margin-right: 0.8rem;">
+    <div class="header-icon" id="menuIcon" title="Menu">
+        EN
+    </div>
+    <div class="header-icon" id="infoIcon" title="Informazioni">
+        i
+    </div>
+</div>
+        <h1>Gli step verso un nuovo approccio di pensiero</h1>
+        <p>Un viaggio attraverso l'evoluzione dell'approccio sistemico nella sostenibilità e nel design</p>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Cerca eventi..." class="search-input">
+            <button class="clear-search-btn" id="clearSearchBtn" title="Cancella ricerca">X</button>
+        </div>
+    </div>
+    <div class="info-popup-overlay" id="infoPopupOverlay">
+       <div class="info-popup lang-it" style="width: 85%; max-width: 1500px; height: auto; min-height: 200px; max-height: 75vh; overflow-y: auto; font-size: 0.85rem; padding: 40px; margin-top: 100px; margin-left: auto; margin-right:  auto">
+            <button class="info-popup-close" id="closeInfoPopup">×</button>
+           <h3 class="it-lang" style="text-align: center;color: #d4a34d; font-weight: bold; margin-bottom: 15px;">Benvenut@!</h3>
+<div class="it-lang" style="color: #ffffff; line-height: 1.5; text-align: left;">
+    <p style="text-align: center; "margin-bottom: 15px;">Questa timeline multilivello ti permette di esplorare tutti i fattori che storicamente hanno contribuito al delinearsi
+         <br> di un approccio di pensiero olistico, multidisciplinare e sistemico, toccando tematiche ambientali, sociali, economiche, educative e filosofiche.
+     <br>Più imparerai, più guarderai il mondo da una nuova prospettiva!</p>
+   <br>
+    <p style="color: #d4a34d; font-weight: bold; margin-bottom: 5px;padding-left: 3rem;">Come usare la timeline:</p>
+    <p style="margin-bottom: 10px;padding-left: 3rem;">Al centro troverai cinque linee del tempo per cinque diverse tipologie di contenuti:</p>
+    
+    <ul style="list-style: none; padding-left: 3rem; margin-bottom: 15px;">
+        <li style="margin-bottom: 5px;padding-left: 3rem; color: #bf6654;"><strong style=" text-decoration: underline;">Storia Generale</strong> ➡ le tappe storiche significative che danno quadro di riferimento temporale;</li>
+        <li style="margin-bottom: 5px;padding-left: 3rem; color: #fe964c;"><strong style=" text-decoration: underline;">Enti</strong> ➡ istituzioni, associazioni, centri di ricerca o programmi formativi che hanno contribuito alla definizione del pensiero sistemico;</li>
+        <li style="margin-bottom: 5px;padding-left: 3rem; color: #8d6e63;"><strong style=" text-decoration: underline;">Documentazione</strong> ➡ libri, testi, riviste, articoli, paper, filme e materiali audiovisivi che hanno apportato contribuiti significativi alla letteratura;</li>
+        <li style="margin-bottom: 5px;padding-left: 3rem; color: #4db5ab;"><strong style=" text-decoration: underline;">Eventi</strong> ➡ conferenze, congressi, workshop formativi, mostre tematiche che hanno contribuito al dialogo scientifico-culturale sul tema;</li>
+        <li style="margin-bottom: 5px;padding-left: 3rem; color: #3482b1;"><strong style=" text-decoration: underline;">Definizioni</strong> ➡ formalizzazione e Introduzione di termini, concetti, quadri teorici o branche di studio completamente nuovi.</li>
+    </ul>
+    
+    <p style="margin-bottom: 15px; padding-left: 3rem; ">Scorrendo sulle timeline si apriranno dei pop-up con i contenuti e le informazioni relative.
+      <br>Potrete inoltre trovare dei cerchietti colorati (●), dei tag indicati nella barra sottostante, associati ad ogni contenuto.
+<br>In basso a destra (↘) trovate i tasti per fare zoom sulle linee temporali (+ e -) o per ripristinare (↺) la visualizzazione iniziale.
+      <br>In alto a destra (↗) è presente una barra di ricerca che permette di cercare i contenuti per parole chiave o per data.
+<br>In alto a sinistra (↖) si può invece cambiare lingua (IT➔EN) e riaprire questa finestra di istruzioni ⓘ. 
+  <br>RICORDATI: il sito funziona correttamente solo se visualizzato in modalità Desktop.
+<br><br>Vuoi contribuire al database sistemico? Clicca sul pulsante in basso a sinistra (↙) per proporre un contenuto o per scrivere un feedback.</p>
+    
+    <p style="text-align: center; font-style: italic; color: #d4a34d; margin-top: 25px; font-size: 1.1em;">Clicca Prosegui o "X" per la timeline. Grazie e buona esplorazione!</p>
+  <div style="text-align: right; margin-top: 1.5rem;osition: sticky; bottom: 0; background: rgba(26, 26, 26, 0.98);">
+   <button class="continue-btn it-lang" style="display:inline-block" onclick="document.getElementById('infoPopupOverlay').classList.remove('active')">Prosegui</button>
+<button class="continue-btn en-lang" style="display:none" onclick="document.getElementById('infoPopupOverlay').classList.remove('active')">Continue</button>
+</div>
+</div>
+       
+          
+
+<h3 class="en-lang" style="text-align: center;display: none; color: #d4a34d; font-weight: bold; margin-bottom: 15px;">Welcome!</h3>
+<div class="en-lang" style="display: none; color: #ffffff; line-height: 1.5; text-align: left;">
+    <p style="text-align: center;"margin-bottom: 15px;">This multilevel timeline allows you to explore all the factors that have historically contributed to the emergence of a holistic, 
+      <br>multidisciplinary, and systemic approach to thinking, touching on environmental, social, economic, educational, and philosophical issues.
+      <br>The more you learn, the more you'll see the world from a new perspective!</p>
+  
+  <br>
+    <p style="color: #d4a34d; font-weight: bold; margin-bottom: 5px;padding-left: 3rem;">How to use the timeline:</p>
+    <p style="margin-bottom: 10px;padding-left: 3rem;">In the center you will find five timelines for five different types of content:</p>
+    
+    <ul style="list-style: none; padding-left: 3rem;; margin-bottom: 15px;">
+        <li style="margin-bottom: 5px;padding-left: 3rem; color: #bf6654;"><strong style=" text-decoration: underline;">General History</strong> ➡ the significant historical stages that provide a temporal framework;</li>
+        <li style="margin-bottom: 5px;padding-left: 3rem; color: #fe964c;"><strong style=" text-decoration: underline;">Organizations</strong> ➡ associations, research centers or training programs that have contributed to the definition of systems thinking;</li>
+        <li style="margin-bottom: 5px;padding-left: 3rem; color: #8d6e63;"><strong style=" text-decoration: underline;">Documentation</strong> ➡ books, texts, magazines, articles, papers, films and audiovisual materials that have made significant contributions to literature;</li>
+        <li style="margin-bottom: 5px;padding-left: 3rem; color: #4db5ab;"><strong style=" text-decoration: underline;">Events</strong> ➡ conferences, congresses, training workshops, thematic exhibitions that have contributed to the scientific-cultural dialogue on the topic;</li>
+        <li style="margin-bottom: 5px;padding-left: 3rem; color: #3482b1;"><strong style=" text-decoration: underline;">Definitions</strong> ➡ formalization and introduction of completely new terms, concepts, theoretical frameworks or branches of study.</li>
+    </ul>
+    
+    <p style="margin-bottom: 15px; padding-left: 3rem;">Scrolling through the timelines will open pop-ups with content and related information.
+      <br>You'll also find colored circles (●), tags in the bar below associated with each piece of content.
+<br>At the bottom right (↘), you'll find buttons to zoom in on the timelines (+ and -) or restore (↺) the initial view.
+      <br>At the top right (↗), there's a search bar that allows you to search for content by keyword or date.
+<br>At the top left (↖), you can change the language (EN➔IT) and reopen this instruction window ⓘ. 
+  <br>REMEMBER: the site only works correctly when viewed in Desktop mode.
+<br><br>Want to contribute to the systemic database? Click the button at the bottom left (↙) to submit content or leave feedback.</p>
+    
+    <p style="text-align: center; font-style: italic; color: #d4a34d; margin-top: 25px; font-size: 1.1em;">Click Continue or "X" to timeline. Thank you and enjoy your exploration!</p>
+  <div style="text-align: right; margin-top: 1.5rem;osition: sticky; bottom: 0; background: rgba(26, 26, 26, 0.98);">
+    <button class="continue-btn it-lang" onclick="document.getElementById('infoPopupOverlay').classList.remove('active')">Prosegui</button>
+    <button class="continue-btn en-lang" style="display:none" onclick="document.getElementById('infoPopupOverlay').classList.remove('active')">Continue</button>
+</div>
+</div>
+        </div>
+
+
+    </div>
+    <div class="timeline-container">
+        <div class="vertical-line" id="verticalLine"></div>
+
+        <div class="year-markers" id="yearMarkers"></div>
+
+        <div class="timeline" id="timeline-1-wrapper">
+            <div class="timeline-header">
+                <div class="timeline-title">Storia Generale</div>
+            </div>
+            <div class="timeline-track">
+                <div class="timeline-line"></div>
+                <div class="timeline-events" id="timeline-1"></div>
+            </div>
+        </div>
+
+        <div class="timeline" id="timeline-2-wrapper">
+            <div class="timeline-header">
+                <div class="timeline-title">Enti</div>
+            </div>
+            <div class="timeline-track">
+                <div class="timeline-line"></div>
+                <div class="timeline-events" id="timeline-2"></div>
+            </div>
+        </div>
+
+        <div class="timeline" id="timeline-3-wrapper">
+            <div class="timeline-header">
+                <div class="timeline-title">Documentazione</div>
+            </div>
+            <div class="timeline-track">
+                <div class="timeline-line"></div>
+                <div class="timeline-events" id="timeline-3"></div>
+            </div>
+        </div>
+
+        <div class="timeline" id="timeline-4-wrapper">
+            <div class="timeline-header">
+                <div class="timeline-title">Eventi</div>
+            </div>
+            <div class="timeline-track">
+                <div class="timeline-line"></div>
+                <div class="timeline-events" id="timeline-4"></div>
+            </div>
+        </div>
+
+        <div class="timeline" id="timeline-5-wrapper">
+            <div class="timeline-header">
+                <div class="timeline-title">Definizioni</div>
+            </div>
+            <div class="timeline-track">
+                <div class="timeline-line"></div>
+                <div class="timeline-events" id="timeline-5"></div>
+            </div>
+        </div>
+    </div>
+  
+<footer class="app-footer">
+    <div class="new-event-prompt">
+        <span>Hai qualcosa da aggiungere?</span>
+        <a href="https://forms.gle/MdyjtAE9DozBvcBf6" target="_blank" class="add-to-timeline-btn">Contribuisci</a>
+    </div>
+
+    <div class="legend-container">
+        <div class="legend-item">
+            <div class="legend-dot indicator-systemthinking"></div>
+            Systems Thinking
+            <div class="legend-tooltip" style="border-color: #BFB11B;">
+                <span class="it-lang">Un approccio di pensiero che guarda all'insieme anziché alle singole parti, studiando come gli elementi di un sistema interagiscono tra loro.</span>
+                <span class="en-lang" style="display:none">A holistic mindset that focuses on the relationships between parts of a system rather than the individual components in isolation.</span>
+            </div>
+        </div>
+        <div class="legend-item">
+            <div class="legend-dot indicator-systemicdesign"></div>
+            Systemic Design
+            <div class="legend-tooltip" style="border-color: #2564BF;">
+                <span class="it-lang">Un ambito interdisciplinare che utilizza i principi del design per gestire sistemi complessi, creando soluzioni interconnesse che armonizzano l'attività umana con i processi ecologici.</span>
+                <span class="en-lang" style="display:none">An interdisciplinary field that uses design principles to manage complex systems, creating interconnected solutions that harmonize human activity with ecological processes.</span>
+            </div>
+        </div>
+        <div class="legend-item">
+            <div class="legend-dot indicator-systemdynamic"></div>
+            System Dynamic
+            <div class="legend-tooltip" style="border-color: #A42134;">
+                <span class="it-lang">Una metodologia per modellare matematicamente il comportamento di sistemi complessi nel tempo, focalizzandosi su cicli di feedback e ritardi.</span>
+                <span class="en-lang" style="display:none">A method for understanding the non-linear behavior of complex systems over time through the use of stocks, flows, and feedback loops.</span>
+            </div>
+        </div>
+        <div class="legend-item">
+            <div class="legend-dot dot-sustainability"></div>
+            Sostenibilità
+            <div class="legend-tooltip" style="border-color: #4CAF50;">
+                <span class="it-lang">La capacità di un sistema di mantenersi in equilibrio nel lungo periodo, garantendo il soddisfacimento dei bisogni attuali senza compromettere le risorse per il futuro.</span>
+                <span class="en-lang" style="display:none">The ability to meet current needs without compromising the resources of future generations. It is based on a balance between three fundamental pillars: environmental, economic, and social.</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="zoom-controls">
+        <button class="zoom-btn" id="zoomOutBtn" onclick="zoomOut()">−</button>
+        <div class="zoom-level" id="zoomLevel">100%</div>
+        <button class="zoom-btn" id="zoomInBtn" onclick="zoomIn()">+</button>
+       <button id="resetBtn" class="zoom-btn" onclick="resetZoom()" title="Reset Zoom">↺</button>
+    </div>
+
+  <div style="position: absolute; bottom: 0.2rem; left: 50%; transform: translateX(-50%); font-size: 0.55rem; opacity: 0.5; color: #ffffff; white-space: nowrap;">© 2025 Serena Treppiedi — All rights reserved</div>
+</div>
+</footer>
+<script>
+function fixLabels() {
+    document.querySelectorAll('.fixed-label').forEach(el => el.remove());
+    
+    const headers = document.querySelectorAll('.timeline-header');
+    headers.forEach(header => {
+        const line = header.closest('.timeline').querySelector('.timeline-line');
+       const borderColor = getComputedStyle(header.closest('.timeline')).getPropertyValue('--timeline-color').trim();
+
+        const rect = header.getBoundingClientRect();
+        const title = header.querySelector('.timeline-title');
+        
+        const clone = document.createElement('div');
+        clone.className = 'fixed-label';
+        clone.textContent = title.textContent;
+        clone.style.cssText = `
+            position: fixed;
+            top: ${rect.top}px;
+            left: ${rect.left}px;
+            z-index: 2000;
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: ${borderColor};
+            pointer-events: none;
+            background: rgba(26, 26, 26, 0.95);
+            border-left: 3px solid ${borderColor};
+            padding: 0.4rem 0.6rem;
+            border-radius: 6px;
+            width: auto;
+            white-space: nowrap;
+            backdrop-filter: blur(10px);
+        `;
+        document.body.appendChild(clone);
+    });
+}
+
+window.addEventListener('load', fixLabels);
+window.addEventListener('resize', fixLabels);
+// window.addEventListener('scroll', fixLabels, true);
+// const origZoomIn = window.zoomIn;
+// const origZoomOut = window.zoomOut;
+// const origResetZoom = window.resetZoom;
+// window.zoomIn = function() { origZoomIn && origZoomIn(); setTimeout(fixLabels, 300); }
+// window.zoomOut = function() { origZoomOut && origZoomOut(); setTimeout(fixLabels, 300); }
+// window.resetZoom = function() { origResetZoom && origResetZoom(); setTimeout(fixLabels, 300); }
+ //  document.body.addEventListener('scroll', fixLabels);
+// const observer = new MutationObserver(() => setTimeout(fixLabels, 200));
+// observer.observe(document.body, { childList: true, subtree: false });
+  //
+setTimeout(fixLabels, 50);
+</script>
+
+<script>
+document.querySelectorAll('.legend-item').forEach(item => {
+    item.addEventListener('click', () => {
+        item.classList.toggle('touch-active');
+    });
+    document.addEventListener('click', (e) => {
+        if (!item.contains(e.target)) {
+            item.classList.remove('touch-active');
+        }
+    });
+});
+</script>
+  
+</body>
+
+</html>
