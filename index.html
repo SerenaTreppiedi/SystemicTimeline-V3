@@ -707,19 +707,19 @@
         }
 
         .timeline:nth-child(4) {
-            --timeline-color: #FF964C;
+            --timeline-color: #ff964c;
         }
 
         .timeline:nth-child(5) {
-            --timeline-color: #8D6E63;
+            --timeline-color: #8d6e63;
         }
 
         .timeline:nth-child(6) {
-            --timeline-color: #4DB6AC;
+            --timeline-color: #4db6ac;
         }
 
         .timeline:nth-child(7) {
-            --timeline-color: #4193c5;
+            --timeline-color: #3c87b5;
         }
 
         /* 🟢 Modifica: 5. Definizioni (Verde-Acqua/Turchese) */
@@ -903,11 +903,11 @@ function loadData() {
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxa1RYzP6CHKUFoxVvmVflsQtaMum0ZGeqfoqmEXLcWzPbAdLHAoKSE6HoMAjW-tEzdlA/exec';
     
     timelineData = {
-        '1. Storia Generale': [],
-        '2. Enti': [],
+        '5. Definizioni': [],
         '3. Documentazione': [],
+        '2. Enti': [],
         '4. Eventi': [],
-        '5. Definizioni': []
+        '1. Storia Generale': []
     };
 
     fetch(SCRIPT_URL)
@@ -1317,7 +1317,7 @@ window.addEventListener('wheel', function(e) {
 
         <div class="timeline" id="timeline-1-wrapper">
             <div class="timeline-header">
-                <div class="timeline-title">Storia Generale</div>
+                <div class="timeline-title">Definizioni</div>
             </div>
             <div class="timeline-track">
                 <div class="timeline-line"></div>
@@ -1327,7 +1327,7 @@ window.addEventListener('wheel', function(e) {
 
         <div class="timeline" id="timeline-2-wrapper">
             <div class="timeline-header">
-                <div class="timeline-title">Enti</div>
+                <div class="timeline-title">Documentazione</div>
             </div>
             <div class="timeline-track">
                 <div class="timeline-line"></div>
@@ -1337,7 +1337,7 @@ window.addEventListener('wheel', function(e) {
 
         <div class="timeline" id="timeline-3-wrapper">
             <div class="timeline-header">
-                <div class="timeline-title">Documentazione</div>
+                <div class="timeline-title">Enti</div>
             </div>
             <div class="timeline-track">
                 <div class="timeline-line"></div>
@@ -1357,7 +1357,7 @@ window.addEventListener('wheel', function(e) {
 
         <div class="timeline" id="timeline-5-wrapper">
             <div class="timeline-header">
-                <div class="timeline-title">Definizioni</div>
+                <div class="timeline-title">Storia Generale</div>
             </div>
             <div class="timeline-track">
                 <div class="timeline-line"></div>
