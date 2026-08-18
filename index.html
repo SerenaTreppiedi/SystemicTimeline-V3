@@ -1102,17 +1102,19 @@ function zoomOut() {
     setCenterFraction(fraction);
 }
         function getCenterFraction() {
+    const scroller = document.scrollingElement || document.documentElement;
     const totalWidth = baseWidthPx * currentZoom;
-    const viewportWidth = document.body.clientWidth;
-    const centerX = document.body.scrollLeft + viewportWidth / 2;
+    const viewportWidth = scroller.clientWidth;
+    const centerX = scroller.scrollLeft + viewportWidth / 2;
     return centerX / totalWidth;
 }
 
 function setCenterFraction(fraction) {
+    const scroller = document.scrollingElement || document.documentElement;
     const totalWidth = baseWidthPx * currentZoom;
-    const viewportWidth = document.body.clientWidth;
+    const viewportWidth = scroller.clientWidth;
     const newCenterX = fraction * totalWidth;
-    document.body.scrollLeft = newCenterX - viewportWidth / 2;
+    scroller.scrollLeft = newCenterX - viewportWidth / 2;
 }
         
 
