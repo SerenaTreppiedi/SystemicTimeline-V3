@@ -1086,19 +1086,35 @@ if (event.systemdynamic) {
             zoomInBtn.disabled = currentZoom >= 8.0;
         }
 
-        function zoomIn() {
-            // MODIFICA: Incremento fisso di 0.5 (50%)
-            currentZoom = Math.min(currentZoom + 0.5, 8.0);
-            applyZoom();
-            renderTimelines();
-        }
+     function zoomIn() {
+    const fraction = getCenterFraction();
+    currentZoom = Math.min(currentZoom + 0.5, 8.0);
+    applyZoom();
+    renderTimelines();
+    setCenterFraction(fraction);
+}
 
-        function zoomOut() {
-            // MODIFICA: Decremento fisso di 0.5 (50%) //
-            currentZoom = Math.max(currentZoom - 0.5, 1.0);
-            applyZoom();
-            renderTimelines();
-        }
+function zoomOut() {
+    const fraction = getCenterFraction();
+    currentZoom = Math.max(currentZoom - 0.5, 1.0);
+    applyZoom();
+    renderTimelines();
+    setCenterFraction(fraction);
+}
+        function getCenterFraction() {
+    const totalWidth = baseWidthPx * currentZoom;
+    const viewportWidth = document.body.clientWidth;
+    const centerX = document.body.scrollLeft + viewportWidth / 2;
+    return centerX / totalWidth;
+}
+
+function setCenterFraction(fraction) {
+    const totalWidth = baseWidthPx * currentZoom;
+    const viewportWidth = document.body.clientWidth;
+    const newCenterX = fraction * totalWidth;
+    document.body.scrollLeft = newCenterX - viewportWidth / 2;
+}
+        
 
 function resetZoom() {
     currentZoom = 1.0;
