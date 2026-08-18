@@ -1081,14 +1081,14 @@ if (event.systemdynamic) {
             const zoomOutBtn = document.getElementById('zoomOutBtn');
             const zoomInBtn = document.getElementById('zoomInBtn');
 
-            // Controlla contro i limiti fissi (1.0 e 5.0)
+            // Controlla contro i limiti fissi (1.0 e 8.0)
             zoomOutBtn.disabled = currentZoom <= 1.0;
             zoomInBtn.disabled = currentZoom >= 8.0;
         }
 
         function zoomIn() {
             // MODIFICA: Incremento fisso di 0.5 (50%)
-            currentZoom = Math.min(currentZoom + 0.5, 5.0);
+            currentZoom = Math.min(currentZoom + 0.5, 8.0);
             applyZoom();
             renderTimelines();
         }
