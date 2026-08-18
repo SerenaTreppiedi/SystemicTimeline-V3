@@ -204,7 +204,7 @@
             padding: 0.4rem;
             border-radius: 6px;
             backdrop-filter: blur(10px);
-            z-index: 100
+            z-index: 100;
             border-left: 5px solid var(--timeline-color);
             box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
         }
@@ -272,7 +272,7 @@
         }
 
         .event.force-open {
-            z-index: 10;
+            z-index: 300001;
             /* Z-index inferiore rispetto all'hover */
             opacity: 1;
             /* Il dot è sempre visibile */
@@ -292,7 +292,7 @@
         }
 
         .event:hover {
-            z-index: 10001;
+            z-index: 300001;
         }
 
         /* Hover sui match: 100% opacità e primo piano */
