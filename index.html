@@ -565,6 +565,62 @@
     transform: translateY(-2px);
     box-shadow: 0 3px 10px rgba(189, 156, 89, 0.3);
 }
+
+.tutorial-breadcrumbs {
+    display: flex;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-bottom: 1.3rem;
+}
+
+.tutorial-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid #BF953F;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.2s ease;
+}
+
+.tutorial-dot.active {
+    background: #BF953F;
+}
+
+.tutorial-step {
+    display: none;
+}
+
+.tutorial-step.active {
+    display: block;
+}
+
+.tutorial-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    position: sticky;
+    bottom: 0;
+    background: rgba(26, 26, 26, 0.98);
+    padding-top: 0.5rem;
+}
+
+.skip-btn {
+    background: none;
+    color: rgba(255, 255, 255, 0.6);
+    border: none;
+    cursor: pointer;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.8rem;
+    text-decoration: underline;
+    padding: 0.3rem 0.4rem;
+}
+
+.skip-btn:hover {
+    color: #FFFFFF;
+}
         .zoom-controls {
             display: flex;
             gap: 0.6rem;
@@ -1026,8 +1082,20 @@
 
         let langMode = 'it'
 
+        let tutorialStep = 1;
+        function showTutorialStep(n) {
+            tutorialStep = n;
+            document.querySelectorAll('.tutorial-step').forEach(el => {
+                el.classList.toggle('active', parseInt(el.dataset.step, 10) === n);
+            });
+            document.querySelectorAll('.tutorial-dot').forEach(dot => {
+                dot.classList.toggle('active', parseInt(dot.dataset.step, 10) === n);
+            });
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
 document.getElementById('infoPopupOverlay').classList.add('active');
+if (typeof showTutorialStep === 'function') showTutorialStep(1);
             
             const initDomLinks = () => {
 
@@ -1112,16 +1180,6 @@ document.getElementById('menuIcon').addEventListener('click', () => {
                 node.childNodes.forEach(child => translateNode(child));
             }
         }
-        // Traduce anche il placeholder della barra di ricerca (non è un nodo di testo)
-const searchInputEl = document.getElementById('searchInput');
-if (searchInputEl) {
-    if (langMode == 'it') {
-        searchInputEl.placeholder = translations[searchInputEl.placeholder] || searchInputEl.placeholder;
-    } else {
-        const match = Object.keys(translations).find(k => translations[k] === searchInputEl.placeholder);
-        if (match) searchInputEl.placeholder = match;
-    }
-}
 
         translateNode(document.body);
 
@@ -1152,6 +1210,7 @@ if (searchInputEl) {
 
                     infoIcon.addEventListener('click', () => {
                         infoPopupOverlay.classList.add('active');
+                        showTutorialStep(1);
                     });
                 }
 
@@ -1168,6 +1227,25 @@ if (searchInputEl) {
                         }
                     });
                 }
+
+                // --- Tutorial a step del popup istruzioni ---
+                document.querySelectorAll('.tutorial-dot').forEach(dot => {
+                    dot.addEventListener('click', () => showTutorialStep(parseInt(dot.dataset.step, 10)));
+                });
+
+                document.querySelectorAll('.tutorial-skip-btn').forEach(btn => {
+                    btn.addEventListener('click', () => infoPopupOverlay.classList.remove('active'));
+                });
+
+                document.querySelectorAll('.tutorial-next-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        if (tutorialStep < 4) {
+                            showTutorialStep(tutorialStep + 1);
+                        } else {
+                            infoPopupOverlay.classList.remove('active');
+                        }
+                    });
+                });
 
             }
 
@@ -1618,75 +1696,103 @@ window.addEventListener('wheel', function(e) {
         </div>
     </div>
     <div class="info-popup-overlay" id="infoPopupOverlay">
-       <div class="info-popup lang-it" style="width: 85%; max-width: 1500px; height: auto; min-height: 200px; max-height: 75vh; overflow-y: auto; font-size: 0.85rem; padding: 40px; margin-top: 100px; margin-left: auto; margin-right:  auto">
+       <div class="info-popup" id="tutorialPopup" style="width: 85%; max-width: 1500px; height: auto; min-height: 200px; max-height: 75vh; overflow-y: auto; font-size: 0.85rem; padding: 40px; margin-top: 100px; margin-left: auto; margin-right:  auto">
             <button class="info-popup-close" id="closeInfoPopup">×</button>
-           <h3 class="it-lang" style="text-align: center;color: #d4a34d; font-weight: bold; margin-bottom: 15px;">Benvenut@!</h3>
-<div class="it-lang" style="color: #ffffff; line-height: 1.5; text-align: left;">
-    <p style="text-align: center; "margin-bottom: 15px;">Questa timeline multilivello ti permette di esplorare tutti i fattori che storicamente hanno contribuito al delinearsi
-         <br> di un approccio di pensiero olistico, multidisciplinare e sistemico, toccando tematiche ambientali, sociali, economiche, educative e filosofiche.
-     <br>Più imparerai, più guarderai il mondo da una nuova prospettiva!</p>
-   <br>
-    <p style="color: #d4a34d; font-weight: bold; margin-bottom: 5px;padding-left: 3rem;">Come usare la timeline:</p>
-    <p style="margin-bottom: 10px;padding-left: 3rem;">Al centro troverai cinque linee del tempo per cinque diverse tipologie di contenuti:</p>
-    
-    <ul style="list-style: none; padding-left: 3rem; margin-bottom: 15px;">
-        <li style="margin-bottom: 5px;padding-left: 3rem; color: #bf6654;"><strong style=" text-decoration: underline;">Storia Generale</strong> ➡ le tappe storiche significative che danno quadro di riferimento temporale;</li>
-        <li style="margin-bottom: 5px;padding-left: 3rem; color: #fe964c;"><strong style=" text-decoration: underline;">Enti</strong> ➡ istituzioni, associazioni, centri di ricerca o programmi formativi che hanno contribuito alla definizione del pensiero sistemico;</li>
-        <li style="margin-bottom: 5px;padding-left: 3rem; color: #8d6e63;"><strong style=" text-decoration: underline;">Documentazione</strong> ➡ libri, testi, riviste, articoli, paper, filme e materiali audiovisivi che hanno apportato contribuiti significativi alla letteratura;</li>
-        <li style="margin-bottom: 5px;padding-left: 3rem; color: #4db5ab;"><strong style=" text-decoration: underline;">Eventi</strong> ➡ conferenze, congressi, workshop formativi, mostre tematiche che hanno contribuito al dialogo scientifico-culturale sul tema;</li>
-        <li style="margin-bottom: 5px;padding-left: 3rem; color: #3482b1;"><strong style=" text-decoration: underline;">Definizioni</strong> ➡ formalizzazione e Introduzione di termini, concetti, quadri teorici o branche di studio completamente nuovi.</li>
-    </ul>
-    
-    <p style="margin-bottom: 15px; padding-left: 3rem; ">Scorrendo sulle timeline si apriranno dei pop-up con i contenuti e le informazioni relative.
-      <br>Potrete inoltre trovare dei cerchietti colorati (●), dei tag indicati nella barra sottostante, associati ad ogni contenuto.
-<br>In basso a destra (↘) trovate i tasti per fare zoom sulle linee temporali (+ e -) o per ripristinare (↺) la visualizzazione iniziale.
-      <br>In alto a destra (↗) è presente una barra di ricerca che permette di cercare i contenuti per parole chiave o per data.
-<br>In alto a sinistra (↖) si può invece cambiare lingua (IT➔EN) e riaprire questa finestra di istruzioni ⓘ. 
-  <br><br>Vuoi contribuire al database sistemico? Clicca sul pulsante in basso a sinistra (↙) per proporre un contenuto o per scrivere un feedback.</p>
-    
-    <p style="text-align: center; font-style: italic; color: #d4a34d; margin-top: 25px; font-size: 1.1em;">Clicca Prosegui o "X" per la timeline. Grazie e buona esplorazione!</p>
-  <div style="text-align: right; margin-top: 1.5rem;osition: sticky; bottom: 0; background: rgba(26, 26, 26, 0.98);">
-   <button class="continue-btn it-lang" style="display:inline-block" onclick="document.getElementById('infoPopupOverlay').classList.remove('active')">Prosegui</button>
-<button class="continue-btn en-lang" style="display:none" onclick="document.getElementById('infoPopupOverlay').classList.remove('active')">Continue</button>
-</div>
-</div>
-       
-          
 
-<h3 class="en-lang" style="text-align: center;display: none; color: #d4a34d; font-weight: bold; margin-bottom: 15px;">Welcome!</h3>
-<div class="en-lang" style="display: none; color: #ffffff; line-height: 1.5; text-align: left;">
-    <p style="text-align: center;"margin-bottom: 15px;">This multilevel timeline allows you to explore all the factors that have historically contributed to the emergence of a holistic, 
-      <br>multidisciplinary, and systemic approach to thinking, touching on environmental, social, economic, educational, and philosophical issues.
-      <br>The more you learn, the more you'll see the world from a new perspective!</p>
-  
-  <br>
-    <p style="color: #d4a34d; font-weight: bold; margin-bottom: 5px;padding-left: 3rem;">How to use the timeline:</p>
-    <p style="margin-bottom: 10px;padding-left: 3rem;">In the center you will find five timelines for five different types of content:</p>
-    
-    <ul style="list-style: none; padding-left: 3rem;; margin-bottom: 15px;">
-        <li style="margin-bottom: 5px;padding-left: 3rem; color: #bf6654;"><strong style=" text-decoration: underline;">General History</strong> ➡ the significant historical stages that provide a temporal framework;</li>
-        <li style="margin-bottom: 5px;padding-left: 3rem; color: #fe964c;"><strong style=" text-decoration: underline;">Organizations</strong> ➡ associations, research centers or training programs that have contributed to the definition of systems thinking;</li>
-        <li style="margin-bottom: 5px;padding-left: 3rem; color: #8d6e63;"><strong style=" text-decoration: underline;">Documentation</strong> ➡ books, texts, magazines, articles, papers, films and audiovisual materials that have made significant contributions to literature;</li>
-        <li style="margin-bottom: 5px;padding-left: 3rem; color: #4db5ab;"><strong style=" text-decoration: underline;">Events</strong> ➡ conferences, congresses, training workshops, thematic exhibitions that have contributed to the scientific-cultural dialogue on the topic;</li>
-        <li style="margin-bottom: 5px;padding-left: 3rem; color: #3482b1;"><strong style=" text-decoration: underline;">Definitions</strong> ➡ formalization and introduction of completely new terms, concepts, theoretical frameworks or branches of study.</li>
-    </ul>
-    
-    <p style="margin-bottom: 15px; padding-left: 3rem;">Scrolling through the timelines will open pop-ups with content and related information.
-      <br>You'll also find colored circles (●), tags in the bar below associated with each piece of content.
-<br>At the bottom right (↘), you'll find buttons to zoom in on the timelines (+ and -) or restore (↺) the initial view.
-      <br>At the top right (↗), there's a search bar that allows you to search for content by keyword or date.
-<br>At the top left (↖), you can change the language (EN➔IT) and reopen this instruction window ⓘ. 
-  <br><br>Want to contribute to the systemic database? Click the button at the bottom left (↙) to submit content or leave feedback.</p>
-    
-    <p style="text-align: center; font-style: italic; color: #d4a34d; margin-top: 25px; font-size: 1.1em;">Click Continue or "X" to timeline. Thank you and enjoy your exploration!</p>
-  <div style="text-align: right; margin-top: 1.5rem;osition: sticky; bottom: 0; background: rgba(26, 26, 26, 0.98);">
-    <button class="continue-btn it-lang" onclick="document.getElementById('infoPopupOverlay').classList.remove('active')">Prosegui</button>
-    <button class="continue-btn en-lang" style="display:none" onclick="document.getElementById('infoPopupOverlay').classList.remove('active')">Continue</button>
-</div>
-</div>
+            <div class="tutorial-breadcrumbs" id="tutorialBreadcrumbs">
+                <button class="tutorial-dot active" data-step="1" aria-label="Step 1"></button>
+                <button class="tutorial-dot" data-step="2" aria-label="Step 2"></button>
+                <button class="tutorial-dot" data-step="3" aria-label="Step 3"></button>
+                <button class="tutorial-dot" data-step="4" aria-label="Step 4"></button>
+            </div>
+
+            <!-- STEP 1 -->
+            <div class="tutorial-step active" data-step="1">
+                <h3 class="it-lang" style="text-align: center;color: #d4a34d; font-weight: bold; margin-bottom: 15px;">Benvenut@!</h3>
+                <h3 class="en-lang" style="display:none; text-align: center;color: #d4a34d; font-weight: bold; margin-bottom: 15px;">Welcome!</h3>
+                <div class="it-lang" style="color: #ffffff; line-height: 1.5; text-align: left;">
+                    <p style="text-align: center; margin-bottom: 15px;">Questa timeline multilivello ti permette di esplorare tutti i fattori che storicamente hanno contribuito al delinearsi
+                    <br>di un approccio di pensiero olistico, multidisciplinare e sistemico, toccando tematiche ambientali, sociali, economiche, educative e filosofiche.
+                    <br>Più imparerai, più guarderai il mondo da una nuova prospettiva!</p>
+                </div>
+                <div class="en-lang" style="display:none; color: #ffffff; line-height: 1.5; text-align: left;">
+                    <p style="text-align: center; margin-bottom: 15px;">This multilevel timeline allows you to explore all the factors that have historically contributed to the emergence of a holistic,
+                    <br>multidisciplinary, and systemic approach to thinking, touching on environmental, social, economic, educational, and philosophical issues.
+                    <br>The more you learn, the more you'll see the world from a new perspective!</p>
+                </div>
+            </div>
+
+            <!-- STEP 2 -->
+            <div class="tutorial-step" data-step="2">
+                <h3 class="it-lang" style="text-align: center;color: #d4a34d; font-weight: bold; margin-bottom: 15px;">Le informazioni della timeline:</h3>
+                <h3 class="en-lang" style="display:none; text-align: center;color: #d4a34d; font-weight: bold; margin-bottom: 15px;">Timeline information:</h3>
+                <div class="it-lang" style="color: #ffffff; line-height: 1.5; text-align: left;">
+                    <p style="margin-bottom: 10px;padding-left: 3rem;">Al centro troverai cinque linee del tempo per cinque diverse tipologie di contenuti:</p>
+                    <ul style="list-style: none; padding-left: 3rem; margin-bottom: 15px;">
+                        <li style="margin-bottom: 5px;padding-left: 3rem; color: #bf6654;"><strong style="text-decoration: underline;">Storia Generale</strong> ➡ le tappe storiche significative che danno quadro di riferimento temporale;</li>
+                        <li style="margin-bottom: 5px;padding-left: 3rem; color: #fe964c;"><strong style="text-decoration: underline;">Enti</strong> ➡ istituzioni, associazioni, centri di ricerca o programmi formativi che hanno contribuito alla definizione del pensiero sistemico;</li>
+                        <li style="margin-bottom: 5px;padding-left: 3rem; color: #8d6e63;"><strong style="text-decoration: underline;">Documentazione</strong> ➡ libri, testi, riviste, articoli, paper, filme e materiali audiovisivi che hanno apportato contribuiti significativi alla letteratura;</li>
+                        <li style="margin-bottom: 5px;padding-left: 3rem; color: #4db5ab;"><strong style="text-decoration: underline;">Eventi</strong> ➡ conferenze, congressi, workshop formativi, mostre tematiche che hanno contribuito al dialogo scientifico-culturale sul tema;</li>
+                        <li style="margin-bottom: 5px;padding-left: 3rem; color: #3482b1;"><strong style="text-decoration: underline;">Definizioni</strong> ➡ formalizzazione e Introduzione di termini, concetti, quadri teorici o branche di studio completamente nuovi.</li>
+                    </ul>
+                </div>
+                <div class="en-lang" style="display:none; color: #ffffff; line-height: 1.5; text-align: left;">
+                    <p style="margin-bottom: 10px;padding-left: 3rem;">In the center you will find five timelines for five different types of content:</p>
+                    <ul style="list-style: none; padding-left: 3rem; margin-bottom: 15px;">
+                        <li style="margin-bottom: 5px;padding-left: 3rem; color: #bf6654;"><strong style="text-decoration: underline;">General History</strong> ➡ the significant historical stages that provide a temporal framework;</li>
+                        <li style="margin-bottom: 5px;padding-left: 3rem; color: #fe964c;"><strong style="text-decoration: underline;">Organizations</strong> ➡ associations, research centers or training programs that have contributed to the definition of systems thinking;</li>
+                        <li style="margin-bottom: 5px;padding-left: 3rem; color: #8d6e63;"><strong style="text-decoration: underline;">Documentation</strong> ➡ books, texts, magazines, articles, papers, films and audiovisual materials that have made significant contributions to literature;</li>
+                        <li style="margin-bottom: 5px;padding-left: 3rem; color: #4db5ab;"><strong style="text-decoration: underline;">Events</strong> ➡ conferences, congresses, training workshops, thematic exhibitions that have contributed to the scientific-cultural dialogue on the topic;</li>
+                        <li style="margin-bottom: 5px;padding-left: 3rem; color: #3482b1;"><strong style="text-decoration: underline;">Definitions</strong> ➡ formalization and introduction of completely new terms, concepts, theoretical frameworks or branches of study.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- STEP 3 -->
+            <div class="tutorial-step" data-step="3">
+                <h3 class="it-lang" style="text-align: center;color: #d4a34d; font-weight: bold; margin-bottom: 15px;">Come usare la timeline:</h3>
+                <h3 class="en-lang" style="display:none; text-align: center;color: #d4a34d; font-weight: bold; margin-bottom: 15px;">How to use the timeline:</h3>
+                <div class="it-lang" style="color: #ffffff; line-height: 1.5; text-align: left;">
+                    <p style="margin-bottom: 15px; padding-left: 3rem;">Scorrendo sulle timeline si apriranno dei pop-up con i contenuti e le informazioni relative.
+                    <br>Potrete inoltre trovare dei cerchietti colorati (●), dei tag indicati nella barra sottostante, associati ad ogni contenuto.
+                    <br>In basso a destra (↘) trovate i tasti per fare zoom sulle linee temporali (+ e -) o per ripristinare (↺) la visualizzazione iniziale.
+                    <br>In alto a destra (↗) è presente una barra di ricerca che permette di cercare i contenuti per parole chiave o per data.
+                    <br>In alto a sinistra (↖) si può invece cambiare lingua (IT➔EN) e riaprire questa finestra di istruzioni ⓘ.</p>
+                </div>
+                <div class="en-lang" style="display:none; color: #ffffff; line-height: 1.5; text-align: left;">
+                    <p style="margin-bottom: 15px; padding-left: 3rem;">Scrolling through the timelines will open pop-ups with content and related information.
+                    <br>You'll also find colored circles (●), tags in the bar below associated with each piece of content.
+                    <br>At the bottom right (↘), you'll find buttons to zoom in on the timelines (+ and -) or restore (↺) the initial view.
+                    <br>At the top right (↗), there's a search bar that allows you to search for content by keyword or date.
+                    <br>At the top left (↖), you can change the language (EN➔IT) and reopen this instruction window ⓘ.</p>
+                </div>
+            </div>
+
+            <!-- STEP 4 -->
+            <div class="tutorial-step" data-step="4">
+                <h3 class="it-lang" style="text-align: center;color: #d4a34d; font-weight: bold; margin-bottom: 15px;">Come nutrire la timeline:</h3>
+                <h3 class="en-lang" style="display:none; text-align: center;color: #d4a34d; font-weight: bold; margin-bottom: 15px;">How to grow the timeline:</h3>
+                <div class="it-lang" style="color: #ffffff; line-height: 1.5; text-align: left;">
+                    <p style="margin-bottom: 15px; padding-left: 3rem;">Vuoi contribuire al database sistemico? Clicca sul pulsante in basso a sinistra (↙) per proporre un contenuto o per scrivere un feedback.</p>
+                    <p style="text-align: center; font-style: italic; font-weight: bold; color: #d4a34d; margin-top: 25px; font-size: 1.15em;">Clicca Prosegui o "X" per la timeline. Grazie e buona esplorazione!</p>
+                </div>
+                <div class="en-lang" style="display:none; color: #ffffff; line-height: 1.5; text-align: left;">
+                    <p style="margin-bottom: 15px; padding-left: 3rem;">Want to contribute to the systemic database? Click the button at the bottom left (↙) to submit content or leave feedback.</p>
+                    <p style="text-align: center; font-style: italic; font-weight: bold; color: #d4a34d; margin-top: 25px; font-size: 1.15em;">Click Continue or "X" to go to the timeline. Thank you and enjoy your exploration!</p>
+                </div>
+            </div>
+
+            <div class="tutorial-nav">
+                <div>
+                    <button class="skip-btn it-lang tutorial-skip-btn">Salta</button>
+                    <button class="skip-btn en-lang tutorial-skip-btn" style="display:none">Skip</button>
+                </div>
+                <div>
+                    <button class="continue-btn it-lang tutorial-next-btn">Prosegui</button>
+                    <button class="continue-btn en-lang tutorial-next-btn" style="display:none">Continue</button>
+                </div>
+            </div>
         </div>
-
-
     </div>
     <div class="timeline-container">
         <div class="vertical-line" id="verticalLine"></div>
