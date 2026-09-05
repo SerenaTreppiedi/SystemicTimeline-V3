@@ -69,6 +69,17 @@
           overscroll-behavior-x: none;  /* ← aggiungi questa riga */
         }
 
+        /* Nasconde la scrollbar orizzontale nativa (solo visivamente):
+           lo scroll resta perfettamente funzionante via touch/JS/rotellina,
+           semplicemente non si vede più la barra grigia del browser. */
+        body::-webkit-scrollbar {
+            display: none;
+        }
+        body {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
         .header {
             text-align: center;
             padding: 0.75rem;
@@ -793,7 +804,7 @@
             /* Spazio per header/footer, ora molto più bassi */
             body {
                 padding-top: 110px;
-                padding-bottom: 100px;
+                padding-bottom: 115px;
             }
 
             /* --- TIMELINE: righe più strette, per lasciare più margine
@@ -825,14 +836,14 @@
                 overflow-x: auto;
                 -webkit-overflow-scrolling: touch;
                 gap: 12px;
-                padding: 0.1rem 0;
+                padding: 0.3rem 0;
                 order: 1;
             }
 
             .legend-item {
                 flex: 0 0 auto;
                 white-space: nowrap;
-                font-size: 0.7rem;
+                font-size: 0.78rem;
             }
 
             .zoom-controls {
@@ -859,8 +870,18 @@
                 font-size: 0.8rem;
             }
 
+            /* Ripristinato in una riga propria, in fondo, per non sovrapporsi
+               a legenda o controlli (l'originale era assoluto e troppo vicino) */
             .footer-copyright {
-                display: none;
+                display: block !important;
+                position: static !important;
+                left: auto !important;
+                bottom: auto !important;
+                transform: none !important;
+                order: 4;
+                width: 100%;
+                text-align: center;
+                margin-top: 0.1rem;
             }
 
             /* --- POPUP ISTRUZIONI: un po' più di spazio per il testo --- */
@@ -887,7 +908,7 @@
                 display: none;
                 position: fixed;
                 inset: 0;
-                background: rgba(0, 0, 0, 0.6);
+                background: rgba(26, 26, 26, 0.88);
                 z-index: 400000;
                 align-items: center;
                 justify-content: center;
@@ -902,13 +923,14 @@
                 position: relative;
                 background: rgba(26, 26, 26, 0.98);
                 border: 1px solid #BF953F;
-                border-radius: 10px;
+                border-radius: 6px;
                 padding: 1.2rem 1rem 1rem;
                 width: 100%;
                 max-width: 340px;
                 max-height: 60vh;
                 overflow-y: auto;
-                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+                backdrop-filter: blur(15px);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
             }
 
             .mobile-popup .date {
@@ -1209,12 +1231,23 @@ systemdynamic,
             yearMarkersContainer.innerHTML = '';
             const yearRange = maxYear - minYear;
             let step = 10;
-            if (currentZoom < 1.5) {
-                step = 25;
-            } else if (currentZoom < 2.5) {
-                step = 10;
+            const isMobile = window.innerWidth <= 768;
+            if (isMobile) {
+                if (currentZoom < 3) {
+                    step = 25;
+                } else if (currentZoom < 6) {
+                    step = 10;
+                } else {
+                    step = 5;
+                }
             } else {
-                step = 5;
+                if (currentZoom < 1.5) {
+                    step = 25;
+                } else if (currentZoom < 2.5) {
+                    step = 10;
+                } else {
+                    step = 5;
+                }
             }
 
             for (let year = minYear; year <= maxYear; year += step) {
@@ -1300,12 +1333,12 @@ if (event.systemdynamic) {
 
             // Controlla contro i limiti fissi (1.0 e 8.0)
             zoomOutBtn.disabled = currentZoom <= 1.0;
-            zoomInBtn.disabled = currentZoom >= 8.0;
+            zoomInBtn.disabled = currentZoom >= 10.0;
         }
 
      function zoomIn() {
     const fraction = getCenterFraction();
-    currentZoom = Math.min(currentZoom + 0.5, 8.0);
+    currentZoom = Math.min(currentZoom + 0.5, 10.0);
     applyZoom();
     renderTimelines();
     setCenterFraction(fraction);
@@ -1708,11 +1741,13 @@ function isMobileViewport() {
     return window.matchMedia('(max-width: 768px)').matches;
 }
 
-function openMobilePopup(html) {
+function openMobilePopup(sourceEl) {
     const overlay = document.getElementById('mobilePopupOverlay');
+    const box = overlay ? overlay.querySelector('.mobile-popup') : null;
     const body = document.getElementById('mobilePopupBody');
-    if (!overlay || !body) return;
-    body.innerHTML = html;
+    if (!overlay || !box || !body) return;
+    body.innerHTML = sourceEl.innerHTML;
+    box.style.borderColor = getComputedStyle(sourceEl).borderColor;
     overlay.classList.add('active');
 }
 
@@ -1732,14 +1767,14 @@ document.addEventListener('click', function (e) {
     const eventEl = e.target.closest('.event');
     if (eventEl) {
         const popup = eventEl.querySelector('.event-popup');
-        if (popup) openMobilePopup(popup.innerHTML);
+        if (popup) openMobilePopup(popup);
         return;
     }
 
     const legendEl = e.target.closest('.legend-item');
     if (legendEl) {
         const tooltip = legendEl.querySelector('.legend-tooltip');
-        if (tooltip) openMobilePopup(tooltip.innerHTML);
+        if (tooltip) openMobilePopup(tooltip);
         return;
     }
 });
