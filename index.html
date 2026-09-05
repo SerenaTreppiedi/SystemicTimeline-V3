@@ -1112,6 +1112,16 @@ document.getElementById('menuIcon').addEventListener('click', () => {
                 node.childNodes.forEach(child => translateNode(child));
             }
         }
+        // Traduce anche il placeholder della barra di ricerca (non è un nodo di testo)
+const searchInputEl = document.getElementById('searchInput');
+if (searchInputEl) {
+    if (langMode == 'it') {
+        searchInputEl.placeholder = translations[searchInputEl.placeholder] || searchInputEl.placeholder;
+    } else {
+        const match = Object.keys(translations).find(k => translations[k] === searchInputEl.placeholder);
+        if (match) searchInputEl.placeholder = match;
+    }
+}
 
         translateNode(document.body);
 
