@@ -600,11 +600,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex: 0 0 auto;
     margin-top: 1.5rem;
-    position: sticky;
-    bottom: 0;
-    background: rgba(26, 26, 26, 0.98);
-    padding-top: 0.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(191, 149, 63, 0.25);
 }
 
 .skip-btn {
@@ -705,9 +704,17 @@
     position: relative;
     width: calc(100% - 4rem);
     max-width: none;
-    height:  calc(100vh - 180px);
-    overflow-y: auto;
+    height: calc(100vh - 220px);
+    font-size: 1.05rem;
+    display: flex;
+    flex-direction: column;
   pointer-events: all;
+}
+
+.tutorial-body {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
 }
 
         .info-popup-close {
@@ -737,6 +744,15 @@
             color: #BF953F;
             font-size: 1.8rem;
             margin-bottom: 1rem;
+        }
+
+        /* Solo desktop: titolo più grande e più staccato dal testo, così
+           il corpo del popup risulta meno vuoto */
+        @media (min-width: 769px) {
+            .info-popup h3 {
+                font-size: 2.3rem !important;
+                margin-bottom: 2rem !important;
+            }
         }
 
         .info-popup p {
@@ -975,6 +991,9 @@
             .info-popup {
                 padding: 20px !important;
                 height: calc(100vh - 225px) !important;
+                font-size: 0.85rem !important;
+                width: 85% !important;
+                max-width: none !important;
             }
 
             .tutorial-indent {
@@ -1717,8 +1736,10 @@ window.addEventListener('wheel', function(e) {
         </div>
     </div>
     <div class="info-popup-overlay" id="infoPopupOverlay">
-       <div class="info-popup" id="tutorialPopup" style="width: 85%; max-width: 1500px; overflow-y: auto; font-size: 0.85rem; padding: 40px; margin-left: auto; margin-right: auto">
+       <div class="info-popup" id="tutorialPopup" style="width: 78%; max-width: 1400px; padding: 40px; margin-left: auto; margin-right: auto">
             <button class="info-popup-close" id="closeInfoPopup">×</button>
+
+            <div class="tutorial-body">
 
             <div class="tutorial-breadcrumbs" id="tutorialBreadcrumbs">
                 <button class="tutorial-dot active" data-step="1" aria-label="Step 1"></button>
@@ -1799,10 +1820,14 @@ window.addEventListener('wheel', function(e) {
                 <h3 class="en-lang" style="display:none; text-align: center;color: #d4a34d; font-weight: bold; margin-bottom: 15px;">Contribute to the timeline:</h3>
                 <div class="it-lang" style="color: #ffffff; line-height: 1.5; text-align: left;">
                     <p class="tutorial-indent" style="margin-bottom: 15px;">Vuoi contribuire al database sistemico? Clicca sul pulsante in basso a sinistra (↙) per proporre un contenuto o per scrivere un feedback.</p>
+                    <p style="text-align: center; font-weight: bold; color: #d4a34d; margin-top: 2rem; font-size: 1.3em;">Grazie e buona esplorazione!</p>
                 </div>
                 <div class="en-lang" style="display:none; color: #ffffff; line-height: 1.5; text-align: left;">
                     <p class="tutorial-indent" style="margin-bottom: 15px;">Want to contribute to the systemic database? Click the button at the bottom left (↙) to submit content or leave feedback.</p>
+                    <p style="text-align: center; font-weight: bold; color: #d4a34d; margin-top: 2rem; font-size: 1.3em;">Thank you and enjoy your exploration!</p>
                 </div>
+            </div>
+
             </div>
 
             <div class="tutorial-nav">
