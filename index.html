@@ -749,6 +749,13 @@
            Tutto racchiuso in questo media query: sopra i 768px il sito
            resta identico a prima, byte per byte.
            ============================================================ */
+        /* Nascosto di default SEMPRE (non solo sotto i 768px): senza questa
+           regola, su schermi larghi dove il media query mobile non si applica,
+           questo div comparirebbe come box vuoto con solo il tasto di chiusura. */
+        .mobile-popup-overlay {
+            display: none;
+        }
+
         @media (max-width: 768px) {
 
             /* --- HEADER: compatto, una riga di icone + titolo su una riga sola --- */
@@ -1028,6 +1035,14 @@ if (pulsanteReset) {
                         const term = e.target.value.trim();
                         filterEvents(term);
                         clearBtn.style.display = term ? 'block' : 'none';
+                    });
+
+                    // Su mobile, "Invio" chiude la tastiera invece di dover
+                    // toccare fuori dal campo di ricerca.
+                    searchInput.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter') {
+                            searchInput.blur();
+                        }
                     });
                 }
 
