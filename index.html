@@ -793,29 +793,40 @@
             /* Spazio per header/footer, ora molto più bassi */
             body {
                 padding-top: 110px;
-                padding-bottom: 135px;
+                padding-bottom: 100px;
             }
 
-            /* --- FOOTER: righe impilate, più basse --- */
+            /* --- TIMELINE: righe più strette, per lasciare più margine
+               in vista alla futura finestra di approfondimento --- */
+            .timeline {
+                margin-bottom: 0.4rem;
+            }
+
+            .timeline-track {
+                height: 28px;
+            }
+
+            /* --- FOOTER: legenda su una riga scorrevole, zoom + Contribuisci
+               affiancati sulla stessa riga sotto --- */
             .app-footer {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 0.3rem;
-                padding: 0.4rem 0.5rem 0.3rem;
+                flex-direction: row;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: center;
+                gap: 0.35rem 0.7rem;
+                padding: 0.35rem 0.5rem 0.3rem;
             }
 
-            /* Legenda a capo su più righe invece che a scorrimento:
-               uno scroll interno (overflow-x) taglierebbe anche i tooltip
-               che si aprono verso l'alto, quindi si evita del tutto */
             .legend-container {
                 position: static;
                 transform: none;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 8px 14px;
+                flex: 1 0 100%;
+                justify-content: flex-start;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                gap: 12px;
                 padding: 0.1rem 0;
                 order: 1;
-                width: 100%;
             }
 
             .legend-item {
@@ -825,23 +836,27 @@
             }
 
             .zoom-controls {
-                justify-content: center;
                 order: 2;
             }
 
             .zoom-btn {
-                width: 34px;
-                height: 34px;
+                width: 32px;
+                height: 32px;
+                font-size: 1rem;
             }
 
             .new-event-prompt {
-                justify-content: center;
                 order: 3;
             }
 
             /* Su schermi stretti resta solo il bottone, il testo occupa troppo spazio */
             .new-event-prompt span {
                 display: none;
+            }
+
+            .add-to-timeline-btn {
+                padding: 0.4rem 0.7rem;
+                font-size: 0.8rem;
             }
 
             .footer-copyright {
@@ -854,28 +869,78 @@
                 margin-top: 80px !important;
             }
 
-            /* --- POPUP EVENTO: ancorato allo schermo, non più al pallino ---
-               Un popup centrato sul pallino può uscire dai bordi dello schermo
-               se il pallino è vicino al margine sinistro/destro. Su mobile lo
-               ancoriamo invece a una posizione fissa, sempre visibile e leggibile. */
-            .event-popup {
-                position: fixed;
-                left: 50%;
-                right: auto;
-                bottom: 145px;
-                transform: translateX(-50%);
-                width: calc(100vw - 40px);
-                max-width: 320px;
-                max-height: 40vh;
-                overflow-y: auto;
+            /* --- POPUP EVENTO E TOOLTIP LEGENDA: disattivati su mobile ---
+               .event ha sempre un transform (per centrarsi sul pallino), e questo
+               rende .event il sistema di riferimento per qualunque figlio con
+               position:fixed — non lo schermo. Per questo un popup "fixed" al suo
+               interno restava comunque legato alla posizione orizzontale del
+               pallino. Su mobile questi popup vengono quindi nascosti e sostituiti
+               da un unico popup condiviso, aperto via JS e ancorato allo schermo
+               vero (vedi #mobilePopupOverlay più sotto nell'HTML). */
+            .event-popup,
+            .legend-tooltip {
+                display: none !important;
             }
 
-            .event:hover .event-popup,
-            .event.force-open .event-popup {
-                transform: translateX(-50%);
+            /* --- POPUP CONDIVISO MOBILE --- */
+            .mobile-popup-overlay {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.6);
+                z-index: 400000;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+            }
+
+            .mobile-popup-overlay.active {
+                display: flex;
+            }
+
+            .mobile-popup {
+                position: relative;
+                background: rgba(26, 26, 26, 0.98);
+                border: 1px solid #BF953F;
+                border-radius: 10px;
+                padding: 1.2rem 1rem 1rem;
+                width: 100%;
+                max-width: 340px;
+                max-height: 60vh;
+                overflow-y: auto;
+                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+            }
+
+            .mobile-popup .date {
+                color: #BF953F;
+                font-weight: 600;
+                font-size: 0.85rem;
+            }
+
+            .mobile-popup h4 {
+                font-family: 'Darker Grotesque', sans-serif;
+                font-weight: 700;
+                color: #FFFFFF;
+                font-size: 1.15rem;
+                line-height: 1.4;
+                margin-top: 0.5rem;
+            }
+
+            .mobile-popup-close {
+                position: absolute;
+                top: 0.3rem;
+                right: 0.5rem;
+                background: none;
+                border: none;
+                color: #BF953F;
+                font-size: 1.5rem;
+                line-height: 1;
+                cursor: pointer;
+                padding: 0.3rem;
             }
         }
     </style>
+
 
 
 
@@ -1583,6 +1648,16 @@ window.addEventListener('wheel', function(e) {
   <div class="footer-copyright" style="position: absolute; bottom: 0.2rem; left: 50%; transform: translateX(-50%); font-size: 0.55rem; opacity: 0.5; color: #ffffff; white-space: nowrap;">© 2025 Serena Treppiedi — All rights reserved</div>
 </div>
 </footer>
+
+<!-- Popup condiviso per mobile: usato al posto dei popup evento/legenda
+     in-place, che su schermi piccoli restano legati alla posizione del
+     pallino invece che allo schermo (vedi commento nel CSS mobile). -->
+<div class="mobile-popup-overlay" id="mobilePopupOverlay">
+    <div class="mobile-popup">
+        <button class="mobile-popup-close" id="mobilePopupClose">×</button>
+        <div id="mobilePopupBody"></div>
+    </div>
+</div>
 <script>
 function fixLabels() {
     document.querySelectorAll('.fixed-label').forEach(el => el.remove());
@@ -1625,6 +1700,49 @@ window.addEventListener('resize', fixLabels);
 // window.addEventListener('scroll', fixLabels, true);
 // const origZoomIn = window.zoomIn;
 // const origZoomOut = window.zoomOut;
+
+// --- Popup condiviso per mobile ---
+// Attivo solo sotto i 768px: su desktop questo listener non fa nulla,
+// il comportamento a :hover resta quello di sempre.
+function isMobileViewport() {
+    return window.matchMedia('(max-width: 768px)').matches;
+}
+
+function openMobilePopup(html) {
+    const overlay = document.getElementById('mobilePopupOverlay');
+    const body = document.getElementById('mobilePopupBody');
+    if (!overlay || !body) return;
+    body.innerHTML = html;
+    overlay.classList.add('active');
+}
+
+function closeMobilePopup() {
+    const overlay = document.getElementById('mobilePopupOverlay');
+    if (overlay) overlay.classList.remove('active');
+}
+
+document.addEventListener('click', function (e) {
+    if (!isMobileViewport()) return;
+
+    if (e.target.id === 'mobilePopupOverlay' || e.target.id === 'mobilePopupClose') {
+        closeMobilePopup();
+        return;
+    }
+
+    const eventEl = e.target.closest('.event');
+    if (eventEl) {
+        const popup = eventEl.querySelector('.event-popup');
+        if (popup) openMobilePopup(popup.innerHTML);
+        return;
+    }
+
+    const legendEl = e.target.closest('.legend-item');
+    if (legendEl) {
+        const tooltip = legendEl.querySelector('.legend-tooltip');
+        if (tooltip) openMobilePopup(tooltip.innerHTML);
+        return;
+    }
+});
 // const origResetZoom = window.resetZoom;
 // window.zoomIn = function() { origZoomIn && origZoomIn(); setTimeout(fixLabels, 300); }
 // window.zoomOut = function() { origZoomOut && origZoomOut(); setTimeout(fixLabels, 300); }
