@@ -820,6 +820,19 @@
                 margin-bottom: 0.4rem;
             }
 
+            /* Il titolo qui dentro è invisibile (sostituito dall'etichetta
+               colorata mobile), ma il suo box occupa comunque spazio nel
+               flusso normale della pagina: va ridotto insieme al resto,
+               altrimenti resta una fascia grigia vuota sopra ogni riga. */
+            .timeline-header {
+                padding: 0.15rem 0.4rem;
+                margin-bottom: 0.15rem;
+            }
+
+            .timeline-title {
+                font-size: 0.9rem;
+            }
+
             .timeline-track {
                 height: 28px;
             }
