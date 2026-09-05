@@ -1462,7 +1462,7 @@ window.addEventListener('wheel', function(e) {
  #intro-content {
     text-align: center;
     opacity: 0;
-    transition: opacity 3.s ease;
+    transition: opacity 3s ease;
   }
   #intro-logo {
     width: 400px;
@@ -1490,6 +1490,46 @@ window.addEventListener('wheel', function(e) {
     font-style: italic;
     font-family: 'Lora', serif;
   }
+  #intro-lang-select {
+    margin-top: 2.2rem;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    pointer-events: none;
+  }
+  #intro-lang-select.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  #intro-lang-prompt {
+    color: #FFFFFF;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.02em;
+    margin-bottom: 1.1rem;
+  }
+  #intro-lang-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .intro-lang-btn {
+    background: #424242;
+    color: #FFFFFF;
+    border: 1px solid #BF953F;
+    padding: 0.6rem 1.6rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .intro-lang-btn:hover {
+    background: #555555;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(189, 156, 89, 0.3);
+  }
 </style>
   
 </head>
@@ -1498,22 +1538,53 @@ window.addEventListener('wheel', function(e) {
 <div id="intro-overlay">
 <div id="intro-content">
     <img id="intro-logo" src="LOGO SyChro 1.svg" alt="SyChro - Collective Systemic Chronography">
+    <div id="intro-lang-select">
+        <p id="intro-lang-prompt">Map your nodes: select a language</p>
+        <div id="intro-lang-buttons">
+            <button class="intro-lang-btn" id="introLangIt">Italiano</button>
+            <button class="intro-lang-btn" id="introLangEn">English</button>
+        </div>
+    </div>
 </div>
 </div>
 
 <script>
   (function () {
     const overlay = document.getElementById('intro-overlay');
-    const title = document.getElementById('intro-content');
+    const content = document.getElementById('intro-content');
+    const langSelect = document.getElementById('intro-lang-select');
+    const btnIt = document.getElementById('introLangIt');
+    const btnEn = document.getElementById('introLangEn');
 
     requestAnimationFrame(() => {
-      title.style.opacity = '1';
+      content.style.opacity = '1';
     });
 
+    // Dopo qualche secondo (tempo per il logo di comparire) compare la
+    // scelta della lingua. Nessun fade-out automatico: si chiude solo
+    // quando l'utente sceglie.
     setTimeout(() => {
+      langSelect.classList.add('visible');
+    }, 2500);
+
+    function closeIntro() {
       overlay.style.opacity = '0';
       setTimeout(() => overlay.remove(), 800);
-    }, 6000);
+    }
+
+    btnIt.addEventListener('click', () => {
+      closeIntro();
+    });
+
+    btnEn.addEventListener('click', () => {
+      // Riusa il toggle di lingua già esistente (bottone "EN/IT" in header),
+      // così tutto il resto della logica di traduzione resta invariato.
+      const menuIcon = document.getElementById('menuIcon');
+      if (menuIcon && typeof langMode !== 'undefined' && langMode === 'it') {
+        menuIcon.click();
+      }
+      closeIntro();
+    });
   })();
 </script>
   
