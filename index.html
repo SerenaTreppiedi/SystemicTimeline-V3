@@ -805,7 +805,7 @@
                 width: 100%;
                 box-sizing: border-box;
                 padding: 0.35rem 0.6rem;
-                font-size: 0.8rem;
+                font-size: 16px; /* iOS Safari fa zoom automatico sotto i 16px */
             }
 
             /* Spazio per header/footer, ora molto più bassi */
@@ -850,7 +850,12 @@
             .legend-item {
                 flex: 0 0 auto;
                 white-space: nowrap;
-                font-size: 0.78rem;
+                font-size: 0.72rem;
+            }
+
+            .legend-dot {
+                width: 8px;
+                height: 8px;
             }
 
             .zoom-controls {
@@ -1709,7 +1714,11 @@ window.addEventListener('wheel', function(e) {
 <script>
 function fixLabels() {
     document.querySelectorAll('.fixed-label').forEach(el => el.remove());
-    
+
+    const isMobile = window.innerWidth <= 768;
+    const labelFontSize = isMobile ? '0.9rem' : '1.2rem';
+    const labelPadding = isMobile ? '0.25rem 0.5rem' : '0.4rem 0.6rem';
+
     const headers = document.querySelectorAll('.timeline-header');
     headers.forEach(header => {
         const line = header.closest('.timeline').querySelector('.timeline-line');
@@ -1727,13 +1736,13 @@ function fixLabels() {
             left: ${rect.left}px;
             z-index: 2000;
             font-family: 'Darker Grotesque', sans-serif;
-            font-size: 1.2rem;
+            font-size: ${labelFontSize};
             font-weight: 400;
             color: ${borderColor};
             pointer-events: none;
             background: rgba(26, 26, 26, 0.95);
             border-left: 3px solid ${borderColor};
-            padding: 0.4rem 0.6rem;
+            padding: ${labelPadding};
             border-radius: 6px;
             width: auto;
             white-space: nowrap;
