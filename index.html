@@ -723,6 +723,107 @@
         }
 
         /* 🟢 Modifica: 5. Definizioni (Verde-Acqua/Turchese) */
+
+        /* ============================================================
+           ADATTAMENTO MOBILE
+           Tutto racchiuso in questo media query: sopra i 768px il sito
+           resta identico a prima, byte per byte.
+           ============================================================ */
+        @media (max-width: 768px) {
+
+            /* --- HEADER: da elementi assoluti sovrapposti a righe impilate --- */
+            .header {
+                padding: 0.6rem 0.8rem;
+                text-align: center;
+            }
+
+            .header-icons {
+                position: static;
+                transform: none;
+                justify-content: center;
+                margin-bottom: 0.5rem;
+            }
+
+            .header h1 {
+                font-size: 1.4rem;
+                line-height: 1.2;
+                padding: 0 0.3rem;
+            }
+
+            .header p {
+                font-size: 0.8rem;
+                padding: 0 0.3rem;
+            }
+
+            .search-container {
+                position: static;
+                transform: none;
+                width: 100%;
+                margin-top: 0.6rem;
+            }
+
+            .search-input {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            /* Spazio sufficiente sotto l'header, ora molto più alto */
+            body {
+                padding-top: 225px;
+                padding-bottom: 175px;
+            }
+
+            /* --- FOOTER: da riga unica accavallata a righe impilate --- */
+            .app-footer {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.4rem;
+                padding: 0.5rem 0.6rem 0.4rem;
+            }
+
+            .legend-container {
+                position: static;
+                transform: none;
+                justify-content: flex-start;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                gap: 14px;
+                padding: 0.2rem 0;
+                order: 1;
+                width: 100%;
+            }
+
+            .legend-item {
+                flex: 0 0 auto;
+                white-space: nowrap;
+                font-size: 0.75rem;
+            }
+
+            .zoom-controls {
+                justify-content: center;
+                order: 2;
+            }
+
+            .new-event-prompt {
+                justify-content: center;
+                order: 3;
+            }
+
+            /* Su schermi stretti resta solo il bottone, il testo occupa troppo spazio */
+            .new-event-prompt span {
+                display: none;
+            }
+
+            .footer-copyright {
+                display: none;
+            }
+
+            /* --- POPUP ISTRUZIONI: un po' più di spazio per il testo --- */
+            .info-popup {
+                padding: 20px !important;
+                margin-top: 80px !important;
+            }
+        }
     </style>
 
 
@@ -1280,8 +1381,7 @@ window.addEventListener('wheel', function(e) {
 <br>In basso a destra (↘) trovate i tasti per fare zoom sulle linee temporali (+ e -) o per ripristinare (↺) la visualizzazione iniziale.
       <br>In alto a destra (↗) è presente una barra di ricerca che permette di cercare i contenuti per parole chiave o per data.
 <br>In alto a sinistra (↖) si può invece cambiare lingua (IT➔EN) e riaprire questa finestra di istruzioni ⓘ. 
-  <br>RICORDATI: il sito funziona correttamente solo se visualizzato in modalità Desktop.
-<br><br>Vuoi contribuire al database sistemico? Clicca sul pulsante in basso a sinistra (↙) per proporre un contenuto o per scrivere un feedback.</p>
+  <br><br>Vuoi contribuire al database sistemico? Clicca sul pulsante in basso a sinistra (↙) per proporre un contenuto o per scrivere un feedback.</p>
     
     <p style="text-align: center; font-style: italic; color: #d4a34d; margin-top: 25px; font-size: 1.1em;">Clicca Prosegui o "X" per la timeline. Grazie e buona esplorazione!</p>
   <div style="text-align: right; margin-top: 1.5rem;osition: sticky; bottom: 0; background: rgba(26, 26, 26, 0.98);">
@@ -1315,8 +1415,7 @@ window.addEventListener('wheel', function(e) {
 <br>At the bottom right (↘), you'll find buttons to zoom in on the timelines (+ and -) or restore (↺) the initial view.
       <br>At the top right (↗), there's a search bar that allows you to search for content by keyword or date.
 <br>At the top left (↖), you can change the language (EN➔IT) and reopen this instruction window ⓘ. 
-  <br>REMEMBER: the site only works correctly when viewed in Desktop mode.
-<br><br>Want to contribute to the systemic database? Click the button at the bottom left (↙) to submit content or leave feedback.</p>
+  <br><br>Want to contribute to the systemic database? Click the button at the bottom left (↙) to submit content or leave feedback.</p>
     
     <p style="text-align: center; font-style: italic; color: #d4a34d; margin-top: 25px; font-size: 1.1em;">Click Continue or "X" to timeline. Thank you and enjoy your exploration!</p>
   <div style="text-align: right; margin-top: 1.5rem;osition: sticky; bottom: 0; background: rgba(26, 26, 26, 0.98);">
@@ -1432,7 +1531,7 @@ window.addEventListener('wheel', function(e) {
        <button id="resetBtn" class="zoom-btn" onclick="resetZoom()" title="Reset Zoom">↺</button>
     </div>
 
-  <div style="position: absolute; bottom: 0.2rem; left: 50%; transform: translateX(-50%); font-size: 0.55rem; opacity: 0.5; color: #ffffff; white-space: nowrap;">© 2025 Serena Treppiedi — All rights reserved</div>
+  <div class="footer-copyright" style="position: absolute; bottom: 0.2rem; left: 50%; transform: translateX(-50%); font-size: 0.55rem; opacity: 0.5; color: #ffffff; white-space: nowrap;">© 2025 Serena Treppiedi — All rights reserved</div>
 </div>
 </footer>
 <script>
