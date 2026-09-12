@@ -2015,6 +2015,40 @@ function isMobileViewport() {
     return window.matchMedia('(max-width: 768px)').matches;
 }
 
+// --- Correzione popup evento tagliati ai bordi (solo desktop) ---
+// Il popup si centra sul pallino, ma vicino all'inizio/fine della timeline
+// può sconfinare oltre il bordo della pagina e venire tagliato. Al passaggio
+// del mouse, se sconfina, lo spostiamo quel tanto che basta per rientrare.
+document.addEventListener('mouseover', function (e) {
+    if (isMobileViewport()) return;
+    const eventEl = e.target.closest('.event');
+    if (!eventEl || eventEl.contains(e.relatedTarget)) return;
+    const popup = eventEl.querySelector('.event-popup');
+    if (!popup) return;
+    popup.style.transform = '';
+    requestAnimationFrame(() => {
+        const rect = popup.getBoundingClientRect();
+        const margin = 12;
+        let shift = 0;
+        if (rect.left < margin) {
+            shift = margin - rect.left;
+        } else if (rect.right > window.innerWidth - margin) {
+            shift = (window.innerWidth - margin) - rect.right;
+        }
+        if (shift !== 0) {
+            popup.style.transform = `translateX(calc(-50% + ${shift}px))`;
+        }
+    });
+});
+
+document.addEventListener('mouseout', function (e) {
+    if (isMobileViewport()) return;
+    const eventEl = e.target.closest('.event');
+    if (!eventEl || eventEl.contains(e.relatedTarget)) return;
+    const popup = eventEl.querySelector('.event-popup');
+    if (popup) popup.style.transform = '';
+});
+
 function openMobilePopup(sourceEl) {
     const overlay = document.getElementById('mobilePopupOverlay');
     const box = overlay ? overlay.querySelector('.mobile-popup') : null;
