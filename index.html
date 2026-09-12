@@ -1326,6 +1326,13 @@ document.getElementById('menuIcon').addEventListener('click', () => {
 
 
 
+function hideDataLoadingMessage() {
+    const msgIt = document.getElementById('dataLoadingMessage');
+    const msgEn = document.getElementById('dataLoadingMessageEn');
+    if (msgIt) msgIt.style.display = 'none';
+    if (msgEn) msgEn.style.display = 'none';
+}
+
 function loadData() {
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxa1RYzP6CHKUFoxVvmVflsQtaMum0ZGeqfoqmEXLcWzPbAdLHAoKSE6HoMAjW-tEzdlA/exec';
     
@@ -1364,9 +1371,11 @@ systemdynamic,
                 }
             });
             renderTimelines();
+            hideDataLoadingMessage();
         })
         .catch(error => {
             console.error('Errore nel caricamento dei dati:', error);
+            hideDataLoadingMessage();
         });
 }
 
@@ -1867,6 +1876,8 @@ window.addEventListener('wheel', function(e) {
             </div>
         </div>
     </div>
+    <p id="dataLoadingMessage" class="it-lang" style="text-align: center; font-style: italic; font-size: 0.8rem; color: #ffffff; opacity: 0.7; margin: 0 0 0.5rem;">Sistemando i dati nel sistema...</p>
+    <p id="dataLoadingMessageEn" class="en-lang" style="display:none; text-align: center; font-style: italic; font-size: 0.8rem; color: #ffffff; opacity: 0.7; margin: 0 0 0.5rem;">Systemically loading system data...</p>
     <div class="timeline-container">
         <div class="vertical-line" id="verticalLine"></div>
 
