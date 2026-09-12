@@ -57,7 +57,11 @@
             color: #FFFFFF;
             min-height: auto;
             /*modificato in auto per adattarsi nell'embeded */
-            max-width: 1200px;
+            max-width: none;
+            /* Prima era 1200px: senza effetto reale prima del fix overflow,
+               ma con quel fix attivo confinava la timeline zoomata dentro
+               una finestra di 1200px su schermi più larghi. Rimosso per
+               tornare a occupare tutta la larghezza dello schermo. */
             margin: 0 auto;
             /* MODIFICA: larghezza massima body */
             overflow-x: scroll;  /* ripristinato */;
