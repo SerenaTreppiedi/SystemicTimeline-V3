@@ -628,6 +628,15 @@
 .tutorial-indent {
     padding-left: 3rem;
 }
+
+.tutorial-category-row {
+    background: rgba(255, 255, 255, 0.08);
+    border-left: 4px solid;
+    border-radius: 8px;
+    padding: 0.7rem 1rem;
+    margin-bottom: 0.6rem;
+    color: #ffffff;
+}
         .zoom-controls {
             display: flex;
             gap: 0.6rem;
@@ -1777,24 +1786,20 @@ window.addEventListener('wheel', function(e) {
                 <h3 class="it-lang" style="text-align: center;color: #d4a34d; font-weight: bold; margin-bottom: 15px;">Le informazioni della timeline:</h3>
                 <h3 class="en-lang" style="display:none; text-align: center;color: #d4a34d; font-weight: bold; margin-bottom: 15px;">Timeline information:</h3>
                 <div class="it-lang" style="color: #ffffff; line-height: 1.5; text-align: left;">
-                    <p class="tutorial-indent" style="margin-bottom: 10px;">Al centro troverai cinque linee del tempo per cinque diverse tipologie di contenuti:</p>
-                    <ul class="tutorial-indent" style="list-style: none; margin-bottom: 15px;">
-                        <li class="tutorial-indent" style="margin-bottom: 5px;color: #bf6654;"><strong style="text-decoration: underline;">Storia Generale</strong> ➡ le tappe storiche significative che danno quadro di riferimento temporale;</li>
-                        <li class="tutorial-indent" style="margin-bottom: 5px;color: #fe964c;"><strong style="text-decoration: underline;">Enti</strong> ➡ istituzioni, associazioni, centri di ricerca o programmi formativi che hanno contribuito alla definizione del pensiero sistemico;</li>
-                        <li class="tutorial-indent" style="margin-bottom: 5px;color: #8d6e63;"><strong style="text-decoration: underline;">Documentazione</strong> ➡ libri, testi, riviste, articoli, paper, filme e materiali audiovisivi che hanno apportato contribuiti significativi alla letteratura;</li>
-                        <li class="tutorial-indent" style="margin-bottom: 5px;color: #4db5ab;"><strong style="text-decoration: underline;">Eventi</strong> ➡ conferenze, congressi, workshop formativi, mostre tematiche che hanno contribuito al dialogo scientifico-culturale sul tema;</li>
-                        <li class="tutorial-indent" style="margin-bottom: 5px;color: #3482b1;"><strong style="text-decoration: underline;">Definizioni</strong> ➡ formalizzazione e Introduzione di termini, concetti, quadri teorici o branche di studio completamente nuovi.</li>
-                    </ul>
+                    <p style="margin-bottom: 14px;">Al centro troverai cinque linee del tempo per cinque diverse tipologie di contenuti:</p>
+                    <div class="tutorial-category-row" style="border-left-color: #ca6b58;"><strong style="color: #ca6b58;">Definizioni</strong> — formalizzazione e introduzione di termini, concetti, quadri teorici o branche di studio completamente nuovi.</div>
+                    <div class="tutorial-category-row" style="border-left-color: #ff964c;"><strong style="color: #ff964c;">Documentazione</strong> — libri, testi, riviste, articoli, paper, filme e materiali audiovisivi che hanno apportato contribuiti significativi alla letteratura.</div>
+                    <div class="tutorial-category-row" style="border-left-color: #8d6e63;"><strong style="color: #8d6e63;">Enti</strong> — istituzioni, associazioni, centri di ricerca o programmi formativi che hanno contribuito alla definizione del pensiero sistemico.</div>
+                    <div class="tutorial-category-row" style="border-left-color: #4db6ac;"><strong style="color: #4db6ac;">Eventi</strong> — conferenze, congressi, workshop formativi, mostre tematiche che hanno contribuito al dialogo scientifico-culturale sul tema.</div>
+                    <div class="tutorial-category-row" style="border-left-color: #3c87b5; margin-bottom: 0;"><strong style="color: #3c87b5;">Storia Generale</strong> — le tappe storiche significative che danno un quadro di riferimento temporale.</div>
                 </div>
                 <div class="en-lang" style="display:none; color: #ffffff; line-height: 1.5; text-align: left;">
-                    <p class="tutorial-indent" style="margin-bottom: 10px;">In the center you will find five timelines for five different types of content:</p>
-                    <ul class="tutorial-indent" style="list-style: none; margin-bottom: 15px;">
-                        <li class="tutorial-indent" style="margin-bottom: 5px;color: #bf6654;"><strong style="text-decoration: underline;">General History</strong> ➡ the significant historical stages that provide a temporal framework;</li>
-                        <li class="tutorial-indent" style="margin-bottom: 5px;color: #fe964c;"><strong style="text-decoration: underline;">Organizations</strong> ➡ associations, research centers or training programs that have contributed to the definition of systems thinking;</li>
-                        <li class="tutorial-indent" style="margin-bottom: 5px;color: #8d6e63;"><strong style="text-decoration: underline;">Documentation</strong> ➡ books, texts, magazines, articles, papers, films and audiovisual materials that have made significant contributions to literature;</li>
-                        <li class="tutorial-indent" style="margin-bottom: 5px;color: #4db5ab;"><strong style="text-decoration: underline;">Events</strong> ➡ conferences, congresses, training workshops, thematic exhibitions that have contributed to the scientific-cultural dialogue on the topic;</li>
-                        <li class="tutorial-indent" style="margin-bottom: 5px;color: #3482b1;"><strong style="text-decoration: underline;">Definitions</strong> ➡ formalization and introduction of completely new terms, concepts, theoretical frameworks or branches of study.</li>
-                    </ul>
+                    <p style="margin-bottom: 14px;">In the center you will find five timelines for five different types of content:</p>
+                    <div class="tutorial-category-row" style="border-left-color: #ca6b58;"><strong style="color: #ca6b58;">Definitions</strong> — formalization and introduction of completely new terms, concepts, theoretical frameworks or branches of study.</div>
+                    <div class="tutorial-category-row" style="border-left-color: #ff964c;"><strong style="color: #ff964c;">Documentation</strong> — books, texts, magazines, articles, papers, films and audiovisual materials that have made significant contributions to literature.</div>
+                    <div class="tutorial-category-row" style="border-left-color: #8d6e63;"><strong style="color: #8d6e63;">Organizations</strong> — associations, research centers or training programs that have contributed to the definition of systems thinking.</div>
+                    <div class="tutorial-category-row" style="border-left-color: #4db6ac;"><strong style="color: #4db6ac;">Events</strong> — conferences, congresses, training workshops, thematic exhibitions that have contributed to the scientific-cultural dialogue on the topic.</div>
+                    <div class="tutorial-category-row" style="border-left-color: #3c87b5; margin-bottom: 0;"><strong style="color: #3c87b5;">General History</strong> — the significant historical stages that provide a temporal framework.</div>
                 </div>
             </div>
 
