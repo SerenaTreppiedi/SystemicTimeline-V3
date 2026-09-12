@@ -205,9 +205,9 @@
 
         .timeline-container {
             padding: 0.5rem 1rem 1rem 1rem;
-            min-width: 100%;
-               overflow: visible;   /* ripristinato */
+            overflow: visible;   /* ripristinato */
             position: relative;
+            margin: 0 auto;
         }
 
         .timeline {
@@ -1141,8 +1141,12 @@ if (pulsanteReset) {
                 timelineContainer = document.querySelector('.timeline-container');
 
                 // Assicurati che baseWidthPx sia calcolato correttamente
+                // Limitato a 1200px: è la larghezza di riferimento originale,
+                // studiata per la spaziatura dei pallini. Senza questo limite,
+                // su schermi larghi (ora che il body non ha più un max-width)
+                // i pallini finirebbero troppo distanziati fin dallo zoom 100%.
                 timelineContainer.style.width = '100%';
-                baseWidthPx = timelineContainer.clientWidth;
+                baseWidthPx = Math.min(timelineContainer.clientWidth, 1200);
 
 
                 // Nuovo: Event Listener per la ricerca
@@ -1562,7 +1566,7 @@ window.addEventListener('wheel', function(e) {
         function applyZoom() {
             if (!baseWidthPx && timelineContainer) {
                 timelineContainer.style.width = '100%';
-                baseWidthPx = timelineContainer.clientWidth;
+                baseWidthPx = Math.min(timelineContainer.clientWidth, 1200);
             }
 
             timelineContainer.style.width = `${baseWidthPx * currentZoom}px`;
