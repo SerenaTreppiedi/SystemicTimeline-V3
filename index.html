@@ -2028,12 +2028,15 @@ document.addEventListener('mouseover', function (e) {
     popup.style.transform = '';
     requestAnimationFrame(() => {
         const rect = popup.getBoundingClientRect();
+        const bodyRect = document.body.getBoundingClientRect();
         const margin = 12;
+        const minX = Math.max(0, bodyRect.left) + margin;
+        const maxX = Math.min(window.innerWidth, bodyRect.right) - margin;
         let shift = 0;
-        if (rect.left < margin) {
-            shift = margin - rect.left;
-        } else if (rect.right > window.innerWidth - margin) {
-            shift = (window.innerWidth - margin) - rect.right;
+        if (rect.left < minX) {
+            shift = minX - rect.left;
+        } else if (rect.right > maxX) {
+            shift = maxX - rect.right;
         }
         if (shift !== 0) {
             popup.style.transform = `translateX(calc(-50% + ${shift}px))`;
