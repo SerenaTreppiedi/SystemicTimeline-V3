@@ -913,6 +913,11 @@
                 padding-bottom: 115px;
             }
 
+            #dataLoadingMessage,
+            #dataLoadingMessageEn {
+                top: 95px !important;
+            }
+
             /* --- TIMELINE: righe più strette, per lasciare più margine
                in vista alla futura finestra di approfondimento --- */
             .timeline {
@@ -1331,11 +1336,17 @@ function hideDataLoadingMessage() {
     const msgEn = document.getElementById('dataLoadingMessageEn');
     if (msgIt) msgIt.style.display = 'none';
     if (msgEn) msgEn.style.display = 'none';
+    // Nascondere il messaggio sposta la timeline verso l'alto: le etichette
+    // di categoria vanno ricalcolate, altrimenti restano nella posizione
+    // "congelata" precedente.
+    if (typeof fixLabels === 'function') fixLabels();
 }
 
-function loadData() {
+function loadData(attempt) {
+    attempt = attempt || 1;
+    const MAX_ATTEMPTS = 3;
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxa1RYzP6CHKUFoxVvmVflsQtaMum0ZGeqfoqmEXLcWzPbAdLHAoKSE6HoMAjW-tEzdlA/exec';
-    
+
     timelineData = {
         '5. Definizioni': [],
         '3. Documentazione': [],
@@ -1374,10 +1385,30 @@ systemdynamic,
             hideDataLoadingMessage();
         })
         .catch(error => {
-            console.error('Errore nel caricamento dei dati:', error);
-            hideDataLoadingMessage();
+            console.error(`Errore nel caricamento dei dati (tentativo ${attempt}/${MAX_ATTEMPTS}):`, error);
+            if (attempt < MAX_ATTEMPTS) {
+                // Riprova dopo una breve pausa: spesso è solo il "risveglio"
+                // di Google Apps Script dopo un periodo di inattività.
+                setTimeout(() => loadData(attempt + 1), 1500);
+            } else {
+                showDataLoadingError();
+            }
         });
 }
+
+function showDataLoadingError() {
+    const msgIt = document.getElementById('dataLoadingMessage');
+    const msgEn = document.getElementById('dataLoadingMessageEn');
+    if (msgIt) {
+        msgIt.textContent = 'Impossibile caricare i dati al momento. Prova a ricaricare la pagina.';
+        msgIt.style.opacity = '1';
+    }
+    if (msgEn) {
+        msgEn.textContent = 'Unable to load data right now. Try reloading the page.';
+        msgEn.style.opacity = '1';
+    }
+}
+
 
         function filterEvents(searchTerm) {
             const term = searchTerm.toLowerCase().trim();
@@ -1876,8 +1907,8 @@ window.addEventListener('wheel', function(e) {
             </div>
         </div>
     </div>
-    <p id="dataLoadingMessage" class="it-lang" style="text-align: center; font-style: italic; font-size: 0.8rem; color: #ffffff; opacity: 0.7; margin: 0 0 0.5rem;">Sistemando i dati nel sistema...</p>
-    <p id="dataLoadingMessageEn" class="en-lang" style="display:none; text-align: center; font-style: italic; font-size: 0.8rem; color: #ffffff; opacity: 0.7; margin: 0 0 0.5rem;">Systemically loading system data...</p>
+    <p id="dataLoadingMessage" class="it-lang" style="position: fixed; top: 155px; left: 0; right: 0; z-index: 5000; pointer-events: none; text-align: center; font-style: italic; font-size: 0.8rem; color: #ffffff; opacity: 0.7; margin: 0;">Sistemando i dati nel sistema...</p>
+    <p id="dataLoadingMessageEn" class="en-lang" style="display:none; position: fixed; top: 155px; left: 0; right: 0; z-index: 5000; pointer-events: none; text-align: center; font-style: italic; font-size: 0.8rem; color: #ffffff; opacity: 0.7; margin: 0;">Systemically loading system data...</p>
     <div class="timeline-container">
         <div class="vertical-line" id="verticalLine"></div>
 
